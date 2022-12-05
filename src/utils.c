@@ -6,12 +6,12 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 09:15:12 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 09:59:18 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/05 11:16:15 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "cub3d.h"
+#include "cub3d_parser.h"
 #include <stdlib.h>
 
 void	exit_error(char *message, int exit_code)

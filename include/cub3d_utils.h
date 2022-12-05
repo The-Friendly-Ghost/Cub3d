@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
+/*   cub3d_utils.h                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 10:04:31 by cpost         ########   odam.nl         */
+/*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
+/*   Updated: 2022/12/05 13:17:04 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_UTILS_H
+# define CUB3D_UTILS_H
 
-typedef struct s_rgb {
-	unsigned char	red;
-	unsigned char	green;
-	unsigned char	blue;
-}	t_rgb;
-
-typedef struct s_texture {
-	char	*file;
-}	t_texture;
-
-typedef struct s_map {
-	char		**map;
-	int			n_row;
-	int			n_column;
-	t_texture	*north_wall;
-	t_texture	*east_wall;
-	t_texture	*south_wall;
-	t_texture	*west_wall;
-	t_rgb		*floor;
-	t_rgb		*ceiling;
-}	t_map;
-
-// src/utils.c
+/**
+#=====================================#
+#============= Functions =============#
+#=====================================#
+*/
 
 /**
  * @brief Function that exits the program. But before it does that, it prints
