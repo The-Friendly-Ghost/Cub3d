@@ -6,12 +6,22 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 09:23:36 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/05 10:04:31 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+typedef struct s_rgb {
+	unsigned char	red;
+	unsigned char	green;
+	unsigned char	blue;
+}	t_rgb;
+
+typedef struct s_texture {
+	char	*file;
+}	t_texture;
 
 typedef struct s_map {
 	char		**map;
@@ -24,16 +34,6 @@ typedef struct s_map {
 	t_rgb		*floor;
 	t_rgb		*ceiling;
 }	t_map;
-
-typedef struct s_rgb {
-	unsigned char	red;
-	unsigned char	green;
-	unsigned char	blue;
-}	t_rgb;
-
-typedef struct s_texture {
-	char	*file;
-}	t_texture;
 
 // src/utils.c
 

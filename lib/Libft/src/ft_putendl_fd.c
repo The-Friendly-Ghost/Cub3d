@@ -6,9 +6,13 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:42:44 by cpost         #+#    #+#                 */
-/*   Updated: 2022/04/22 14:16:53 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/05 09:58:37 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+#include <unistd.h>
+#include <stddef.h>
 
 /*
 Function:
@@ -19,10 +23,6 @@ Input:
 Return value: 
 	None
 */
-
-#include <unistd.h>
-#include <stddef.h>
-
 void	ft_putendl_fd(char *s, int fd)
 {
 	size_t	i;
