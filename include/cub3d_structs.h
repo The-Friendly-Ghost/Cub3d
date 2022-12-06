@@ -6,12 +6,13 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 09:58:46 by mevan-de      ########   odam.nl         */
+/*   Updated: 2022/12/06 13:09:39 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_STRUCTS_H
 # define CUB3D_STRUCTS_H
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 
 /**
 #=====================================#
@@ -37,5 +38,10 @@ typedef struct s_map {
 	t_rgb		*floor;
 	t_rgb		*ceiling;
 }	t_map;
+
+typedef struct s_cub3d {
+	mlx_t	*mlx;
+	t_map	map_data;
+}	t_cub3d;
 
 #endif

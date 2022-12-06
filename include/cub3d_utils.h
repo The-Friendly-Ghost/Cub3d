@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 13:17:04 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 11:28:55 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,14 @@
  * @note
  */
 void	exit_error(char *message, int exit_code);
+
+/**
+ * @brief Function that can be used to protect memory allocation.
+ * Will exit the program if the pointer is NULL.
+ * @param ptr a pointer to the allocated memory
+ * @returns the allocated pointer if it's not null
+ * @note example: str = alloc_check(malloc(sizeof(char) * 10))
+ */
+void	*alloc_check(void *ptr);
 
 #endif

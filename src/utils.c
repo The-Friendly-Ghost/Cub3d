@@ -6,13 +6,21 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 09:15:12 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 13:47:39 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 12:54:18 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cub3d_parser.h"
+#include "cub3d_utils.h"
 #include <stdlib.h>
+
+void	*alloc_check(void *ptr)
+{
+	if (!ptr)
+		exit_error("Malloc fail\n", 1);
+	return (ptr);
+}
 
 void	exit_error(char *message, int exit_code)
 {
