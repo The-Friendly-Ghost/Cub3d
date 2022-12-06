@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 17:02:18 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 09:58:46 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,5 @@ typedef struct s_map {
 	t_rgb		*floor;
 	t_rgb		*ceiling;
 }	t_map;
-
-TESTESTEST
 
 #endif

@@ -6,7 +6,7 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2022/12/05 16:12:04 by cpost         ########   odam.nl          #
+#    Updated: 2022/12/06 10:12:09 by mevan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ INC_PATH = include lib/Libft/include lib/get_next_line/include
 
 LIBFT_PATH = lib/Libft/
 GNL_PATH = lib/get_next_line/
+MLX42_PATH = lib/MLX42/
 
 NAME = cub3D
 
@@ -35,6 +36,7 @@ RESET = \033[0m
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+MLXFLAGS = -I include -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 #=====================================#
 #============ Input files ============#
@@ -46,6 +48,7 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(LIBFT_PATH)libft.a $(GNL_PATH)getnextline.a
+LIB += $(MLX42_PATH)libmlx42.a
 
 #=====================================#
 #=============== Rules ===============#
@@ -56,7 +59,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_PATH)
 	@make -C $(GNL_PATH)
-	@$(CC) $(CFLAGS) $(LIB) $(OBJ) $(INC) -o $(NAME) && printf "$(YELLOW)$(BOLD)\rBuild $(NAME)\r\e[35C[OK]\n$(RESET)"
+	@make -C $(MLX42_PATH)
+	@$(CC) $(CFLAGS) $(LIB) $(MLXFLAGS) $(OBJ) $(INC) -o $(NAME) && printf "$(YELLOW)$(BOLD)\rBuild $(NAME)\r\e[35C[OK]\n$(RESET)"
 
 $(OBJ_PATH)/%.o: %.c include/cub3d*
 	@mkdir -p $(@D)
@@ -77,6 +81,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_PATH) fclean
 	@make -C $(GNL_PATH) fclean
+	@make -C $(MLX42_PATH) fclean
 
 re: fclean all
 

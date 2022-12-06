@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 16:57:54 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 10:05:34 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*get_rgb(char *line)
 	t_rgb		*rgb;
 	int			i;
 	int			color;
+	char		*path; // added this as it wasn't declared
 
 	rgb = malloc(sizeof(t_rgb));
 	i = 0;
@@ -38,8 +39,8 @@ char	*get_rgb(char *line)
 		color = (color * 10) + line[i];
 		i++;
 	}
-	path = ft_calloc((len + 1), sizeof(char));
-	ft_strlcpy(path, line + temp, len + 1);
+	path = ft_calloc((/* len + */ 1), sizeof(char)); // Casper I edited this to Make
+	ft_strlcpy(path, line, 1 /* + temp, len + 1 */); // this too
 	return (path);
 }
 
@@ -80,8 +81,8 @@ void	get_info_from_file(char *line, t_map *map)
 		map->west_wall = get_path(line + i + 3);
 	else if (!ft_strncmp(line + i, "EA ", 3))
 		map->east_wall = get_path(line + i + 3);
-	else if (!ft_strncmp(line + i, "F ", 2))
-		map->floor = get_rgb(line + i + 2);
+	//else if (!ft_strncmp(line + i, "F ", 2))  Casper 
+		//map->floor = get_rgb(line + i + 2);
 	else if (!ft_strncmp(line + i, "C ", 2))
 		map->south_wall = get_rgb(line + i + 2);
 }
