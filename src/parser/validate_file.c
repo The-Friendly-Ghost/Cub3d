@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 10:05:34 by mevan-de      ########   odam.nl         */
+/*   Updated: 2022/12/06 14:16:47 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,85 +23,116 @@
 
 #include <stdio.h>
 
-char	*get_rgb(char *line)
+// void	line_to_map(t_map *map, char *line, unsigned int map_row)
+// {
+// 	map->map[map_row] = ft_strdup(line);
+// }
+
+void	allocate_more_space(t_map *map, unsigned int *capacity)
 {
-	t_rgb		*rgb;
-	int			i;
-	int			color;
-	char		*path; // added this as it wasn't declared
+	static unsigned int	new_size;
+	char				**new_map;
+	int					i;
+
+	if (new_size == 0)
+		new_size = 8;
+	i = 0;
+	while (map->map[i])
+		i++;
+	new_map = malloc(sizeof(char *) * new_size); //TODO Protect! //Moet deze niet met NULL gevuld worden?
+	while (i > 0)
+	{
+		i--;
+		new_map[i] = ft_strdup(map->map[i]);
+		free(map->map[i]);
+	}
+	free(map->map);
+	map->map = new_map;
+	*capacity = new_size / 2;
+	new_size *= 2;
+}
+
+void	parse_map(char *line, t_map *map)
+{
+	static unsigned int	capacity;
+	static unsigned int	map_row;
+
+	if (map->map == NULL)
+	{
+		capacity = 4;
+		map->map = malloc(sizeof(char *) * capacity); // TODO Deze protecten
+	}
+	if (capacity == 1)
+		allocate_more_space(map, &capacity);
+	map->map[map_row++] = ft_strdup(line); // TODO Strdup protect als line NULL is ?
+	map->map[map_row] = NULL;
+	capacity--;
+}
+
+t_rgb	*get_rgb(char **line)
+{
+	t_rgb	*rgb;
+	char	**rgb_values;
 
 	rgb = malloc(sizeof(t_rgb));
-	i = 0;
-	while (line[i] && ft_is_whitespace(line[i]))
-		i++;
-	while (line[i] && ft_isdigit(line[i]))
-	{
-		color = (color * 10) + line[i];
-		i++;
-	}
-	path = ft_calloc((/* len + */ 1), sizeof(char)); // Casper I edited this to Make
-	ft_strlcpy(path, line, 1 /* + temp, len + 1 */); // this too
-	return (path);
+	rgb_values = ft_split(line[1], ',');
+	rgb->red = ft_atoi(rgb_values[0]);
+	rgb->green = ft_atoi(rgb_values[1]);
+	rgb->blue = ft_atoi(rgb_values[2]);
+	// TODO rgb_values freeen!'
+	// TODO ATOI returned 0 als het verkerd gaat dat moet anders, 
+	// 0 is een rgb value.
+	return (rgb);
 }
 
-char	*get_path(char *line)
+// TODO error check toevoegen als mlx_load_png verkeerd gaat.
+// TODO als er een newline direct achter de filename staat, werkt het niet.
+void	get_info_from_file(char **line, t_map *map)
 {
-	char	*path;
-	int		i;
-	int		len;
-	int		temp;
-
-	i = 0;
-	len = 0;
-	while (line[i] && ft_is_whitespace(line[i]))
-		i++;
-	temp = i;
-	while (line[i] && !ft_is_whitespace(line[i]))
-	{
-		len++;
-		i++;
-	}
-	path = ft_calloc((len + 1), sizeof(char));
-	ft_strlcpy(path, line + temp, len + 1);
-	return (path);
+	if (!ft_strcmp(line[0], "SO"))
+		map->south_wall = mlx_load_png(line[1]);
+	else if (!ft_strcmp(line[0], "NO"))
+		map->north_wall = mlx_load_png(line[1]);
+	else if (!ft_strcmp(line[0], "WE"))
+		map->west_wall = mlx_load_png(line[1]);
+	else if (!ft_strcmp(line[0], "EA"))
+		map->east_wall = mlx_load_png(line[1]);
+	else if (!ft_strcmp(line[0], "F"))
+		map->floor = get_rgb(line);
+	else if (!ft_strcmp(line[0], "C"))
+		map->ceiling = get_rgb(line);
 }
 
-void	get_info_from_file(char *line, t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && ft_is_whitespace(line[i]))
-		i++;
-	if (!ft_strncmp(line + i, "SO ", 3))
-		map->south_wall = get_path(line + i + 3);
-	else if (!ft_strncmp(line + i, "NO ", 3))
-		map->north_wall = get_path(line + i + 3);
-	else if (!ft_strncmp(line + i, "WE ", 3))
-		map->west_wall = get_path(line + i + 3);
-	else if (!ft_strncmp(line + i, "EA ", 3))
-		map->east_wall = get_path(line + i + 3);
-	//else if (!ft_strncmp(line + i, "F ", 2))  Casper 
-		//map->floor = get_rgb(line + i + 2);
-	else if (!ft_strncmp(line + i, "C ", 2))
-		map->south_wall = get_rgb(line + i + 2);
-}
-
-void	parse_map(t_map *map)
+void	parse_file(t_map *map)
 {
 	char	*line_read;
+	char	**line_split;
 
 	line_read = get_next_line(map->fd_map);
 	if (line_read == NULL)
 		exit_error(".cub file is empty", 1);
 	while (line_read != NULL)
 	{
+		line_split = ft_split(line_read, ' ');
 		if (all_info_is_set(map) == false)
-			get_info_from_file(line_read, map);
-		// else
-		// 	parse_map(line_read, map);
+			get_info_from_file(line_split, map);
+		else
+			parse_map(line_read, map);
 		free(line_read);
+		// TODO Line split volledig freeen.
 		line_read = get_next_line(map->fd_map);
+	}
+}
+
+void	print_map(char **map)
+{
+	int	i;
+	
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
 	}
 }
 
@@ -120,5 +151,6 @@ void	validate_filetype(char *filename, t_map *map)
 	map->fd_map = open(filename, R_OK);
 	if (map->fd_map < 0)
 		exit_error(strerror(errno), 1);
-	parse_map(map);
+	parse_file(map);
+	// print_map(map->map);
 }

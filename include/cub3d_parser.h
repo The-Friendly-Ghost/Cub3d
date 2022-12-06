@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 15:48:53 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 11:54:08 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	all_info_is_set(t_map *map);
  * @return Nothing
  * @note
  */
-void	get_info_from_file(char *line, t_map *map);
+void	get_info_from_file(char **line, t_map *map);
 
 /**
  * @brief Checks if a line qualifies as part of the map or not.
@@ -79,7 +79,7 @@ void	parse_line_read(char *line, t_map *map);
  * @return Nothing
  * @note
  */
-void	parse_map(t_map *map);
+void	parse_file(t_map *map);
 
 /**
  * @brief Validates whether a file exists and ends with .cub
