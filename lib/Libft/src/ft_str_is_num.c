@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_str_is_num.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 18:09:16 by cpost         ########   odam.nl         */
+/*   Created: 2022/12/06 15:04:48 by cpost         #+#    #+#                 */
+/*   Updated: 2022/12/06 15:09:07 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_parser.h"
-#include "cub3d_utils.h"
-#include "cub3d_structs.h"
 #include "libft.h"
-#include <stdbool.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "cub3d_MLX.h"
 
-int	main(int argc, char **argv)
+/**
+ * @brief Checks if a string contains only numbers
+ * @param num The string to check
+ * @return 1 if string contains only numbers. Else 0.
+ * @note
+ */
+int	ft_str_is_num(char *num)
 {
-	t_cub3d	cub3d_data;
+	int	i;
 
-	(void)argv;
-	if (argc != 2)
-		exit_error("Invalid amount of arguments", 1);
-	init_map(&cub3d_data.map_data);
-	parse_file(argv[1], &cub3d_data.map_data);
-	close(cub3d_data.map_data.fd_map);
-	init_mlx(cub3d_data);
+	i = 0;
+	if (num == NULL)
+		return (0);
+	while (num[i])
+	{
+		if (!ft_isdigit(num[i]))
+			return (0);
+		i++;
+	}
 	return (1);
 }

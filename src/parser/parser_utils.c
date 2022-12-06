@@ -6,36 +6,16 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 14:15:04 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 12:47:31 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 18:05:35 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_parser.h"
+#include "cub3d_structs.h"
 #include <stdbool.h>
 #include <stddef.h>
+#include "libft.h"
 
-/**
- * @note TODO Not sure of die if-statement later aangepast moet worden.
- * Misschien covered deze statement niet alle edge cases.
- */
-// bool	is_map(char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (line[i])
-// 	{
-// 		while (ft_is_whitespace(line[i]))
-// 			i++;
-// 		if (line[i] == '1' || line[i] == '0')
-// 			return (true);
-// 		else
-// 			return (false);
-// 	}
-// 	return (false);
-// }
-
-// TODO Newline moet er misschien uit bij het parsen van de map
 bool	ft_is_whitespace(char c)
 {
 	if (c == ' ')
@@ -80,4 +60,17 @@ bool	all_info_is_set(t_map *map)
 	if (map->south_wall == NULL)
 		return (false);
 	return (true);
+}
+
+// TODO Deze functie kan later verwijderd worden als map parsing 100% goed gaat
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_putstr_fd(map[i], 1);
+		i++;
+	}
 }
