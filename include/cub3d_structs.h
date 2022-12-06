@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 11:32:51 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 15:13:03 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 */
 
 typedef struct s_rgb {
-	unsigned char	red;
-	unsigned char	green;
-	unsigned char	blue;
+	int	red;
+	int	green;
+	int	blue;
 }	t_rgb;
 
 typedef struct s_map {
