@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 18:05:12 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 18:13:49 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include "libft.h"
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include <stdbool.h>
 
 static void	read_file(t_map *map)
 {

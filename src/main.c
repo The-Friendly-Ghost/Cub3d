@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 18:09:16 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 18:11:24 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d_data;
 
-	(void)argv;
 	if (argc != 2)
 		exit_error("Invalid amount of arguments", 1);
 	init_map(&cub3d_data.map_data);
