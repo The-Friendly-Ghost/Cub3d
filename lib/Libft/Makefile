@@ -6,7 +6,7 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/03/31 11:34:24 by cpost         #+#    #+#                  #
-#    Updated: 2022/03/31 11:34:48 by cpost         ########   odam.nl          #
+#    Updated: 2022/12/06 13:24:33 by cpost         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ ft_lstadd_back.c\
 ft_lstdelone.c\
 ft_lstclear.c\
 ft_lstiter.c\
-ft_lstmap.c
+ft_lstmap.c\
+ft_strcmp.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

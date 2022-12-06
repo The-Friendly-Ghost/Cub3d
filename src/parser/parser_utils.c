@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 14:15:04 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/05 15:49:40 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/06 12:47:31 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,24 @@
  * @note TODO Not sure of die if-statement later aangepast moet worden.
  * Misschien covered deze statement niet alle edge cases.
  */
-bool	is_map(char *line)
-{
-	int	i;
+// bool	is_map(char *line)
+// {
+// 	int	i;
 
-	i = 0;
-	while (line[i])
-	{
-		while (ft_is_whitespace(line[i]))
-			i++;
-		if (line[i] == '1' || line[i] == '0')
-			return (true);
-		else
-			return (false);
-	}
-	return (false);
-}
+// 	i = 0;
+// 	while (line[i])
+// 	{
+// 		while (ft_is_whitespace(line[i]))
+// 			i++;
+// 		if (line[i] == '1' || line[i] == '0')
+// 			return (true);
+// 		else
+// 			return (false);
+// 	}
+// 	return (false);
+// }
 
+// TODO Newline moet er misschien uit bij het parsen van de map
 bool	ft_is_whitespace(char c)
 {
 	if (c == ' ')
