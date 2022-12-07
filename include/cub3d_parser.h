@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 18:03:22 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/07 13:39:12 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
  */
 void	parse_file(char *filename, t_map *map);
 
-
 /**
 #=====================================#
 #============ Parse_map.c ============#
@@ -45,6 +44,13 @@ void	parse_file(char *filename, t_map *map);
  */
 void	parse_map_line(char *line, t_map *map);
 
+/**
+ * @brief Checks if an entire string is whitespaces
+ * @param line The line to parse
+ * @return 1 if the entire string is whitespace. 0 if that is not the case
+ * @note
+ */
+int		str_is_whitespace(char *line);
 
 /**
 #=====================================#
@@ -85,7 +91,6 @@ void	init_map(t_map *map);
  */
 bool	all_info_is_set(t_map *map);
 
-
 /**
  * @brief Checks if a character is a whitespace
  * @param c The character to check
@@ -95,5 +100,19 @@ bool	all_info_is_set(t_map *map);
 bool	ft_is_whitespace(char c);
 
 void	print_map(char **map);
+
+/**
+#=====================================#
+#========== validate_map.c ===========#
+#=====================================#
+*/
+
+/**
+ * @brief Function that checks whether the inputed map is valid.
+ * @param map Pointer to the struct that has all the map information in it
+ * @return Nothing
+ * @note
+ */
+void	validate_map(t_map *map);
 
 #endif

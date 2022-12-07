@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 18:13:49 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/07 13:30:10 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	read_file(t_map *map)
 		if (line_read == NULL && all_info_is_set(map) == false)
 			exit_error("SO, WE, NO, EA, F or C missing", 1);
 	}
+	if (!map->map)
+		exit_error("No map in .cub file", 1);
 }
 
 void	parse_file(char *filename, t_map *map)

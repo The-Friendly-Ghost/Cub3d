@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 14:15:04 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 18:05:35 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/07 17:12:29 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ bool	ft_is_whitespace(char c)
 void	init_map(t_map *map)
 {
 	map->ceiling = NULL;
+	map->map = NULL;
 	map->floor = NULL;
 	map->east_wall = NULL;
 	map->north_wall = NULL;
@@ -71,6 +72,7 @@ void	print_map(char **map)
 	while (map[i])
 	{
 		ft_putstr_fd(map[i], 1);
+		ft_putchar_fd('\n', 1);
 		i++;
 	}
 }
