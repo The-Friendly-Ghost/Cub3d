@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 17:21:09 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/07 17:28:24 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-
-static void	check_if_walled(t_map *map, int y, int x)
-{
-	if (x == 0 || y == 0 || map->map[y + 1] == NULL
-		|| map->map[y][x + 1] == '\n' || map->map[y][x + 1] == '\0')
-		exit_error("Entire map not enclosed by walls", 1);
-	if (map->map[y - 1][x] == ' ' || map->map[y + 1][x] == ' '
-		|| map->map[y][x - 1] == ' ' || map->map[y][x + 1] == ' ')
-		exit_error("Entire map not enclosed by walls", 1);
-}
 
 static void	check_if_map_is_closed(t_map *map)
 {
@@ -40,7 +30,14 @@ static void	check_if_map_is_closed(t_map *map)
 		while (map->map[y][x])
 		{
 			if (map->map[y][x] == '0')
-				check_if_walled(map, y, x);
+			{
+				if (x == 0 || y == 0 || map->map[y + 1] == NULL
+					|| map->map[y][x + 1] == '\n' || map->map[y][x + 1] == '\0')
+					exit_error("Map not enclosed by walls", 1);
+				if (map->map[y - 1][x] == ' ' || map->map[y + 1][x] == ' '
+					|| map->map[y][x - 1] == ' ' || map->map[y][x + 1] == ' ')
+					exit_error("Map not enclosed by walls", 1);
+			}
 			x++;
 		}
 		y++;
