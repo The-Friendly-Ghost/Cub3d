@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 17:28:24 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/07 17:36:42 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	check_if_map_is_closed(t_map *map)
 			if (map->map[y][x] == '0')
 			{
 				if (x == 0 || y == 0 || map->map[y + 1] == NULL
-					|| map->map[y][x + 1] == '\n' || map->map[y][x + 1] == '\0')
+					|| map->map[y][x + 1] == '\0')
 					exit_error("Map not enclosed by walls", 1);
 				if (map->map[y - 1][x] == ' ' || map->map[y + 1][x] == ' '
 					|| map->map[y][x - 1] == ' ' || map->map[y][x + 1] == ' ')
