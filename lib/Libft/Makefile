@@ -6,7 +6,7 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/03/31 11:34:24 by cpost         #+#    #+#                  #
-#    Updated: 2022/03/31 11:34:48 by cpost         ########   odam.nl          #
+#    Updated: 2022/12/08 12:00:36 by cpost         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ ft_substr.c\
 ft_strjoin.c\
 ft_strtrim.c\
 ft_split.c\
+ft_split_set.c\
 ft_itoa.c\
 ft_strmapi.c\
 ft_striteri.c\
@@ -67,7 +68,15 @@ ft_lstadd_back.c\
 ft_lstdelone.c\
 ft_lstclear.c\
 ft_lstiter.c\
-ft_lstmap.c
+ft_lstmap.c\
+ft_strcmp.c\
+ft_charcmp_set.c\
+ft_str_is_num.c\
+ft_strfill.c\
+ft_strchr_replace.c\
+ft_str_is_whitespace.c\
+ft_is_whitespace.c\
+ft_free_double_arr.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

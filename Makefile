@@ -6,7 +6,7 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2022/12/06 10:12:09 by mevan-de      ########   odam.nl          #
+#    Updated: 2022/12/06 18:06:16 by cpost         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 SRC_PATH = src
 OBJ_PATH = obj
-INC_PATH = include lib/Libft/include lib/get_next_line/include
+INC_PATH = include lib/Libft/include lib/get_next_line/include lib/MLX42/include
 
 LIBFT_PATH = lib/Libft/
 GNL_PATH = lib/get_next_line/
@@ -35,7 +35,7 @@ RESET = \033[0m
 #=====================================#
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 MLXFLAGS = -I include -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 #=====================================#
