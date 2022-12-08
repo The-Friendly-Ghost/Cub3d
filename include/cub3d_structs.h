@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 13:09:39 by mevan-de      ########   odam.nl         */
+/*   Updated: 2022/12/06 13:36:23 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,23 @@ typedef struct s_map {
 	t_rgb		*ceiling;
 }	t_map;
 
+typedef struct s_Vector2d {
+	int			x;
+	int			y;
+}	t_Vector2d;
+
+typedef struct s_player{
+	t_Vector2d	position;
+	t_Vector2d	direction;
+	t_Vector2d	cameraPlane;
+	
+}	t_player;
+
 typedef struct s_cub3d {
-	mlx_t	*mlx;
-	t_map	map_data;
+	mlx_t		*mlx;
+	t_map		map_data;
+	t_player	player_data;
+	double		last_time;
 }	t_cub3d;
 
 #endif
