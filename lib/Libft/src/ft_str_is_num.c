@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 15:04:48 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 15:09:07 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 12:45:35 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_str_is_num(char *num)
 	i = 0;
 	if (num == NULL)
 		return (0);
+	if (num[0] == '-' || num[0] == '+')
+		i++;
 	while (num[i])
 	{
 		if (!ft_isdigit(num[i]))

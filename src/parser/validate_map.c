@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 17:36:42 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 12:54:34 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stdio.h>
 
 static void	check_if_map_is_closed(t_map *map)
 {
@@ -116,7 +115,7 @@ static void	check_empty_lines(t_map *map)
 	while (map->map[i])
 		i++;
 	i--;
-	while (str_is_whitespace(map->map[i]))
+	while (ft_str_is_whitespace(map->map[i]))
 	{
 		free(map->map[i]);
 		map->map[i] = NULL;
@@ -125,7 +124,7 @@ static void	check_empty_lines(t_map *map)
 	i = 0;
 	while (map->map[i])
 	{
-		if (str_is_whitespace(map->map[i]))
+		if (ft_str_is_whitespace(map->map[i]))
 			exit_error("No empty lines inside of the map allowed", 1);
 		i++;
 	}
@@ -137,5 +136,4 @@ void	validate_map(t_map *map)
 	equalize_row_length(map);
 	check_forbidden_characters_in_map(map);
 	check_if_map_is_closed(map);
-print_map(map->map);
 }

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/08 10:42:30 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:53:59 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ void	parse_file(char *filename, t_map *map);
  * @note
  */
 void	parse_map_line(char *line, t_map *map);
-
-/**
- * @brief Checks if an entire string is whitespaces
- * @param line The line to parse
- * @return 1 if the entire string is whitespace. 0 if that is not the case
- * @note
- */
-int		str_is_whitespace(char *line);
 
 /**
 #=====================================#
