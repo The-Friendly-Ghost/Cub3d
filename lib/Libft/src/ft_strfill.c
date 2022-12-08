@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 16:34:20 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 17:12:07 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:44:01 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strfill(char *str, size_t len, char c)
 		return (NULL);
 	if (ft_strlen(str) >= len)
 		return (str);
-	new_str = malloc(len * sizeof(char) + 1);
+	new_str = malloc((len + 1) * sizeof(char));
 	while (str && str[i])
 	{
 		new_str[i] = str[i];

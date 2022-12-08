@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 14:15:04 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 17:12:29 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:39:57 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include "libft.h"
-
-bool	ft_is_whitespace(char c)
-{
-	if (c == ' ')
-		return (true);
-	if (c == '\t')
-		return (true);
-	if (c == '\n')
-		return (true);
-	if (c == '\v')
-		return (true);
-	if (c == '\f')
-		return (true);
-	if (c == '\r')
-		return (true);
-	return (false);
-}
 
 void	init_map(t_map *map)
 {

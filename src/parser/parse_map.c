@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 16:05:42 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 17:00:13 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:39:28 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,6 @@
 #include <stdlib.h>
 
 #include <stdio.h> //TODO weghalen
-
-char	*trim_newline(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			str[i] = '\0';
-		i++;
-	}
-	return (str);
-}
-
-int	str_is_whitespace(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_is_whitespace(line[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static void	allocate_more_space(t_map *map, unsigned int *capacity)
 {
@@ -86,7 +58,7 @@ void	parse_map_line(char *line, t_map *map)
 	if (capacity == 1)
 		allocate_more_space(map, &capacity);
 	map->map[map_row] = ft_strdup(line); // TODO Strdup protect als line NULL is ?
-	map->map[map_row] = trim_newline(map->map[map_row]);
+	map->map[map_row] = ft_strchr_replace(map->map[map_row], '\n', ' ');
 	map_row++;
 	map->map[map_row] = NULL;
 	map_init_started = 1;

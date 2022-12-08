@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:43:58 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 16:47:57 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:41:14 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_charcmp_set(char c, char *set);
 int		ft_str_is_num(char *num);
 char	*ft_strfill(char *str, size_t len, char c);
+char	*ft_strchr_replace(char *str, char old, char new);
+int		str_is_whitespace(char *str);
+int		ft_is_whitespace(char c);
 #endif

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 13:30:10 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:27:15 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,17 @@
 static void	read_file(t_map *map)
 {
 	char	*line_read;
-	char	**line_split;
 
 	line_read = get_next_line(map->fd_map);
 	if (line_read == NULL)
 		exit_error(".cub file is empty", 1);
 	while (line_read != NULL)
 	{
-		line_split = ft_split_set(line_read, ",\t\v\f\r\n ");
 		if (all_info_is_set(map) == false)
-			get_info_from_file(line_split, map);
+			get_info_from_file(ft_split_set(line_read, ",\t\v\f\r\n "), map);
 		else
 			parse_map_line(line_read, map);
 		free(line_read);
-		// TODO Line split volledig freeen.
 		line_read = get_next_line(map->fd_map);
 		if (line_read == NULL && all_info_is_set(map) == false)
 			exit_error("SO, WE, NO, EA, F or C missing", 1);

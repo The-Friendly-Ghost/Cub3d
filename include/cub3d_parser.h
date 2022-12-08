@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 13:39:12 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:42:30 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,6 @@ void	init_map(t_map *map);
  * @note
  */
 bool	all_info_is_set(t_map *map);
-
-/**
- * @brief Checks if a character is a whitespace
- * @param c The character to check
- * @return 1 if c is whitespace. 0 if c is not whitespace.
- * @note
- */
-bool	ft_is_whitespace(char c);
 
 void	print_map(char **map);
 

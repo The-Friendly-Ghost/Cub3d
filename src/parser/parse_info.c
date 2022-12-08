@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 16:09:45 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 13:29:35 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/08 10:27:39 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ void	get_info_from_file(char **line, t_map *map)
 		map->floor = get_rgb(line);
 	else if (!ft_strcmp(line[0], "C"))
 		map->ceiling = get_rgb(line);
+	if (line)
+		free(line);
 }
