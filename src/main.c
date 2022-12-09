@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/07 12:32:43 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/09 12:00:47 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "cub3d_MLX.h"
+
+
 
 int	main(int argc, char **argv)
 {

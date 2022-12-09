@@ -6,7 +6,7 @@
 /*   By: mevan-de <mevan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2022/12/06 13:12:43 by mevan-de      ########   odam.nl         */
+/*   Updated: 2022/12/09 12:01:41 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_mlx(t_cub3d cub3d_data)
 	if (!cub3d_data.mlx)
 		exit_error("Failed to init MLX\n", 1);
 	mlx_key_hook(cub3d_data.mlx, key_hook, &cub3d_data);
-	//mlx_loop_hook(cub3d_data.mlx, NULL, &cub3d_data);
+	mlx_loop_hook(cub3d_data.mlx, NULL, &cub3d_data);
 	mlx_loop(cub3d_data.mlx);
 	printf("hello\n");
 }
