@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3d_MLX.h                                        :+:    :+:            */
+/*   cub3d_render.h                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mevan-de <mevan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2022/12/06 13:37:10 by mevan-de      ########   odam.nl         */
+/*   Updated: 2022/12/12 13:48:38 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,13 @@
  * @return Nothing
  */
 void	init_mlx(t_cub3d cub3d_data);
+
+/**
+ * @brief mlx loop that continuously gets called,
+ * used for all the calls for drawing
+ * @param data all game data needed for the rendering
+ * @return Nothing
+*/
+void	update_loop(void *data);
 
 #endif

@@ -61,7 +61,7 @@ int32_t	main(void)
 	if (!mlx)
         error();
 
-	// Create a new image
+	// Create a new images
 	mlx_image_t* img = mlx_new_image(mlx, 512, 512);
 	if (!img)
 		error();

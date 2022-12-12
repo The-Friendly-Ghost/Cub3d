@@ -6,7 +6,7 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2022/12/06 18:06:16 by cpost         ########   odam.nl          #
+#    Updated: 2022/12/12 13:47:29 by mevan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,4 +85,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean, fclean, re, all
+play: all
+	./cub3D maps/subject.cub
+
+.PHONY: clean, fclean, re, all, play

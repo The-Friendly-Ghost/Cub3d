@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   render_loop.c                                      :+:    :+:            */
+/*   cub3d_init.h                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mevan-de <mevan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2022/12/12 14:02:20 by mevan-de      ########   odam.nl         */
+/*   Created: 2022/12/12 14:23:17 by mevan-de      #+#    #+#                 */
+/*   Updated: 2022/12/12 14:31:44 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_utils.h"
-#include "cub3d_render.h"
-#include "cub3d_structs.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef CUB3D_INIT_H
+# define CUB3D_INIT_H
+# include "cub3d_structs.h"
 
+/**
+ * @brief initialize all player values for starting the game.
+ * @param player_data the place to store all player data
+ * @param map the parsed map
+ * @return nothing, but will exit the program when something fails
+*/
+void	init_player_vars(t_player *player_data, char **map);
 
-void	render(t_cub3d *cub3d_data)
-{
-	
-}
-
-void	update_loop(void *data)
-{
-	t_cub3d	*cub3d_data;
-
-	cub3d_data = data;
-	//update_values()
-	render(cub3d_data);
-}
+#endif
