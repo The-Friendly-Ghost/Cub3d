@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_loop.c                                      :+:      :+:    :+:   */
+/*   cub3d_colors.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 12:02:12 by mevan-de          #+#    #+#             */
-/*   Updated: 2022/12/13 11:45:38 by merel            ###   ########.fr       */
+/*   Created: 2022/12/13 11:43:49 by merel             #+#    #+#             */
+/*   Updated: 2022/12/13 11:48:00 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_utils.h"
-#include "cub3d_render.h"
+#ifndef CUB3D_COLORS_H
+# define CUB3D_COLORS_H
 #include "cub3d_structs.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 
+/**
+ * @brief Convers rgb to int (currently with an alpha of 1)
+ * 
+ * @param color the rgb struct to be passed on
+ * @return an int with the correct value for the color
+ */
+int	convert_rgb_to_int(t_rgb color);
 
-void	render(t_cub3d *cub3d_data)
-{
-	(void)cub3d_data;
-	//mlx_rect
-}
-
-void	update_loop(void *data)
-{
-	t_cub3d	*cub3d_data;
-
-	cub3d_data = data;
-	//update_values()
-	render(cub3d_data);
-}
+#endif

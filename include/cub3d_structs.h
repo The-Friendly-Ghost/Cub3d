@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d_structs.h                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: cpost <cpost@student.codam.nl>               +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/08 14:56:00 by mevan-de      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d_structs.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
+/*   Updated: 2022/12/13 11:30:05 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,20 @@ typedef struct s_player{
 	t_Vector2d	position;
 	t_Vector2d	direction;
 	t_Vector2d	cameraPlane;
-	
 }	t_player;
+
+typedef struct s_images{
+	mlx_image_t	*floor;
+	mlx_image_t	*ceiling;
+	mlx_image_t	*walls;
+}	t_images;
 
 typedef struct s_cub3d {
 	mlx_t		*mlx;
 	t_map		map_data;
 	t_player	player_data;
 	double		last_time;
+	t_images	imgages;
 }	t_cub3d;
 
 #endif

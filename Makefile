@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: cpost <cpost@student.codam.nl>               +#+                      #
-#                                                    +#+                       #
-#    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2022/12/12 13:47:29 by mevan-de      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: merel <merel@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/12/05 09:38:13 by cpost             #+#    #+#              #
+#    Updated: 2022/12/13 11:05:19 by merel            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ RESET = \033[0m
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
-MLXFLAGS = -I include -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+#MLXFLAGS = -I include -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+MLXFLAGS = -lglfw -L/opt/homebrew/Cellar/glfw/3.3.8/lib/#Not at codam
 
 #=====================================#
 #============ Input files ============#

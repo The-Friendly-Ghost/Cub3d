@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_loop.c                                      :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 12:02:12 by mevan-de          #+#    #+#             */
-/*   Updated: 2022/12/13 11:45:38 by merel            ###   ########.fr       */
+/*   Created: 2022/12/13 11:41:25 by merel             #+#    #+#             */
+/*   Updated: 2022/12/13 12:12:19 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_utils.h"
-#include "cub3d_render.h"
 #include "cub3d_structs.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 
-
-void	render(t_cub3d *cub3d_data)
+int	convert_rgb_to_int(t_rgb color)
 {
-	(void)cub3d_data;
-	//mlx_rect
-}
-
-void	update_loop(void *data)
-{
-	t_cub3d	*cub3d_data;
-
-	cub3d_data = data;
-	//update_values()
-	render(cub3d_data);
+	return (color.red << 24 | color.green << 16 | color.blue << 8 | 255);
 }
