@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 11:21:08 by mevan-de          #+#    #+#             */
-/*   Updated: 2022/12/13 12:15:07 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init_mlx.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
+/*   Updated: 2022/12/16 13:34:29 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	init_mlx(t_cub3d *cub3d_data)
 	cub3d_data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!cub3d_data->mlx)
 		exit_error("Failed to init MLX\n", 1);
-	init_main_images(cub3d_data->mlx, &cub3d_data->imgages,
+	init_main_images(cub3d_data->mlx, &cub3d_data->images,
 				*(cub3d_data->map_data.floor), *(cub3d_data->map_data.ceiling));
 	mlx_key_hook(cub3d_data->mlx, key_hook, cub3d_data);
 	mlx_loop_hook(cub3d_data->mlx, update_loop, cub3d_data);
