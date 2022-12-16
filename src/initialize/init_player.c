@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 13:39:40 by mevan-de          #+#    #+#             */
-/*   Updated: 2022/12/13 10:42:14 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init_player.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/06 13:39:40 by mevan-de      #+#    #+#                 */
+/*   Updated: 2022/12/16 14:16:27 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,9 @@ void	init_player_vars(t_player *player_data, char **map)
 		exit_error("Map value in init_player_vars is NULL\n", 1);
 	if (!set_player_position(player_data, get_player_start_position(map)))
 		exit_error("Failed to set player position, check map\n", 1);
+	player_data->turnDirection = 0;
+	player_data->rotationSpeed = 0;
+	player_data->moveSpeed = 2;
+	
 	// set player rotation
 }

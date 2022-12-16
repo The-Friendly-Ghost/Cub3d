@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/16 12:48:39 by mevan-de      ########   odam.nl         */
+/*   Updated: 2022/12/16 14:13:22 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,22 @@ typedef struct s_Vector2d {
 	int			y;
 }	t_Vector2d;
 
+/**
+ * @param position a 2d vector with an x and y position
+ * @param turnDirection -1 if turned left +1 if turned right
+ * @param walkDirection -1 if back, +1 if front
+ * @param cameraPlane?
+ * @param MoveSpeed	How many pixels the character can move since the last frame
+ * (maybe make it time dependent)
+ * @param rotationSpeed How fast the camera can turn left and right
+*/
 typedef struct s_player{
 	t_Vector2d	position;
-	t_Vector2d	direction;
+	int			turnDirection;
+	int			walkDirection;
 	t_Vector2d	cameraPlane;
+	int			moveSpeed;
+	int			rotationSpeed;
 }	t_player;
 
 typedef struct s_images{
