@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d_utils.h                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: cpost <cpost@student.codam.nl>               +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/06 11:28:55 by mevan-de      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d_utils.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/05 11:13:37 by cpost             #+#    #+#             */
+/*   Updated: 2022/12/19 13:26:42 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_UTILS_H
 # define CUB3D_UTILS_H
+#include "cub3d_structs.h"
 
 /**
 #=====================================#
@@ -37,5 +38,24 @@ void	exit_error(char *message, int exit_code);
  * @note example: str = alloc_check(malloc(sizeof(char) * 10))
  */
 void	*alloc_check(void *ptr);
+
+/**
+ * @brief checks if a wall is on the location you give it. The location is
+ * the actual pixel distance, not the grid location (this will be floored)
+ * @param map_data the map, the nr_row and the nr_column will be used to check
+ * if there is a wall
+ * @param y	the y location
+ * @param x the x location
+ * @returns true if a 1 is on the corresponding location on the map
+ */
+bool	is_wall_at_location(t_map map_data, float y, float x);
+
+/**
+ * @brief normalizes the angle to be in 0 - 2PI range
+ * 
+ * @param angle the angle that needs to be normalized
+ * @returns the normalized angle...
+ */
+double	normalize_angle(double angle);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init_mlx.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: merel <merel@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2022/12/16 13:34:29 by mevan-de      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 11:21:08 by mevan-de          #+#    #+#             */
+/*   Updated: 2022/12/19 12:45:19 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "cub3d_colors.h"
-
-void	key_hook(mlx_key_data_t keydata, void *param)
-{
-	(void) param;
-	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
-	{
-		if (keydata.key == MLX_KEY_ESCAPE)
-			exit (0);
-		// if (keydata.key == MLX_KEY_W)
-		// if (keydata.key == MLX_KEY_S)
-		// if (keydata.key == MLX_KEY_A)
-		// if (keydata.key == MLX_KEY_D)
-		// if (keydata.key == MLX_KEY_LEFT)
-		// if (keydata.key == MLX_KEY_RIGHT)
-	}
-}
+#include "cub3d_movement.h"
 
 void	fill_image(mlx_image_t *img, t_rgb rgb_color)
 {

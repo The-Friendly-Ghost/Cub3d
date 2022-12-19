@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:39:40 by mevan-de          #+#    #+#             */
-/*   Updated: 2022/12/19 12:22:07 by merel            ###   ########.fr       */
+/*   Updated: 2022/12/19 12:56:29 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "cub3d_utils.h"
 #include <math.h>
 #include <stdio.h>
+#include "cub3d_render.h"
 
-static t_Vector2d	get_player_start_position(char **map)
+static t_Vector2d	get_player_start_coordinates(char **map)
 {
 	t_Vector2d	position;
 
@@ -41,14 +42,14 @@ static char get_player_start_direction(char **map)
 {
 	t_Vector2d start_pos;
 
-	start_pos = get_player_start_position(map);
+	start_pos = get_player_start_coordinates(map);
 	return(map[start_pos.y][start_pos.x]);
 }
 
 static bool	set_player_position(t_player *player_data, t_Vector2d position)
 {
-	player_data->position.x = position.x;
-	player_data->position.y = position.y;
+	player_data->position.x = position.x * TILE_SIZE;
+	player_data->position.y = position.y * TILE_SIZE;
 	return (true);
 }
 
@@ -74,7 +75,7 @@ void	init_player_vars(t_player *player_data, char **map)
 {
 	if (!map)
 		exit_error("Map value in init_player_vars is NULL\n", 1);
-	if (!set_player_position(player_data, get_player_start_position(map)))
+	if (!set_player_position(player_data, get_player_start_coordinates(map)))
 		exit_error("Failed to set player position, check map\n", 1);
 	if (!set_player_init_rotation(player_data, map))
 		exit_error("Failed to set initial player rotation\n", 1);

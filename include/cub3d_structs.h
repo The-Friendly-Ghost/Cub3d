@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
-/*   Updated: 2022/12/19 11:04:08 by merel            ###   ########.fr       */
+/*   Updated: 2022/12/19 13:30:29 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_map {
 	t_rgb				*ceiling;
 }	t_map;
 
+// okay future Merel, here is a thing... the x and y pos of the player
+// should probably be floats, but the x and y position of the map[][] should
+// probably be ints, so maybe create another vector2d?
+typedef struct s_fVector2d {
+	float			x;
+	float			y;
+}	t_fVector2d;
+
 typedef struct s_Vector2d {
 	int			x;
 	int			y;
@@ -54,7 +62,7 @@ typedef struct s_Vector2d {
  * @param rotationSpeed How fast the camera can turn left and right
 */
 typedef struct s_player{
-	t_Vector2d	position;
+	t_fVector2d	position;
 	int			turnDirection;
 	int			walkDirection;
 	t_Vector2d	cameraPlane;
