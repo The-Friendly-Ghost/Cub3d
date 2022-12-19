@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init_player.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: merel <merel@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/12/06 13:39:40 by mevan-de      #+#    #+#                 */
-/*   Updated: 2022/12/16 14:16:27 by mevan-de      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 13:39:40 by mevan-de          #+#    #+#             */
+/*   Updated: 2022/12/19 12:22:07 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_structs.h"
 #include "cub3d_utils.h"
+#include <math.h>
+#include <stdio.h>
 
 static t_Vector2d	get_player_start_position(char **map)
 {
 	t_Vector2d	position;
 
-	position.x = 0;
 	position.y = 0;
 	while (map[position.y])
 	{
+		position.x = 0;
 		while (map[position.y][position.x])
 		{
 			if (map[position.y][position.x] == 'N'
@@ -35,10 +37,36 @@ static t_Vector2d	get_player_start_position(char **map)
 	return (position);
 }
 
+static char get_player_start_direction(char **map)
+{
+	t_Vector2d start_pos;
+
+	start_pos = get_player_start_position(map);
+	return(map[start_pos.y][start_pos.x]);
+}
+
 static bool	set_player_position(t_player *player_data, t_Vector2d position)
 {
 	player_data->position.x = position.x;
 	player_data->position.y = position.y;
+	return (true);
+}
+
+static bool set_player_init_rotation(t_player *player_data, char **map)
+{
+	char direction;
+
+	direction = get_player_start_direction(map);
+	if (direction == 'N')
+		player_data->rotationAngle =  M_PI * 1.5;
+	else if (direction == 'E')
+		player_data->rotationAngle = M_PI * 2;
+	else if (direction == 'S')
+		player_data->rotationAngle =  M_PI * 0.5;
+	else if (direction == 'W')
+		player_data->rotationAngle = M_PI;
+	else
+		return (false);
 	return (true);
 }
 
@@ -48,9 +76,10 @@ void	init_player_vars(t_player *player_data, char **map)
 		exit_error("Map value in init_player_vars is NULL\n", 1);
 	if (!set_player_position(player_data, get_player_start_position(map)))
 		exit_error("Failed to set player position, check map\n", 1);
+	if (!set_player_init_rotation(player_data, map))
+		exit_error("Failed to set initial player rotation\n", 1);
 	player_data->turnDirection = 0;
-	player_data->rotationSpeed = 0;
+	player_data->walkDirection = 0;
+	player_data->rotationSpeed = 2 * (M_PI / 180);
 	player_data->moveSpeed = 2;
-	
-	// set player rotation
 }

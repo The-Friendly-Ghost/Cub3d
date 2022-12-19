@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d_structs.h                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: merel <merel@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/16 14:13:22 by mevan-de      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d_structs.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
+/*   Updated: 2022/12/19 11:04:08 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_player{
 	int			turnDirection;
 	int			walkDirection;
 	t_Vector2d	cameraPlane;
+	float		rotationAngle;
 	int			moveSpeed;
 	int			rotationSpeed;
 }	t_player;

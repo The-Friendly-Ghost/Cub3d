@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d_render.h                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: merel <merel@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2022/12/16 14:05:57 by mevan-de      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d_render.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 11:14:03 by mevan-de          #+#    #+#             */
+/*   Updated: 2022/12/19 10:51:47 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # define WINDOW_WIDTH 400
 # define WINDOW_HEIGHT 320
 # define FOV_ANGLE 60
-# define FOV FOV_ANGLE * (Math.Pi / 180)
+# define FOV FOV_ANGLE * (M_PI / 180)
 # define WALL_STRIP_WIDTH 1
-# define NUM_RAYS WINDOW_WIDTH / WINDOW_HEIGHT
+# define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
 
 /**
  * @brief Initialize all MLX related things: Window, Keyhooks, loop, loophooks.
