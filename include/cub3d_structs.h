@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
-/*   Updated: 2022/12/19 13:30:29 by merel            ###   ########.fr       */
+/*   Updated: 2022/12/19 13:42:45 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,15 @@ typedef struct s_cub3d {
 	double		last_time;
 	t_images	images;
 }	t_cub3d;
+
+typedef struct s_ray {
+	double		ray_angle;
+	float		wallHitX;
+	float		wallHitY;
+	float		distance;
+	bool		wasHitVertical;
+	bool		isRayFacingUp;
+	bool		isRayFacingDown;
+}			t_ray;
 
 #endif
