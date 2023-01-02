@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
-/*   Updated: 2023/01/02 12:39:09 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/02 14:08:34 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_ray {
 	bool		wasHitHorizontal;
 	bool		isRayFacingUp;
 	bool		isRayFacingRight;
-	e_direction	hit_wall_direction;
+	t_direction	hit_wall_direction;
 	float		wall_height;
 	float		draw_start;
 	float		draw_end;
