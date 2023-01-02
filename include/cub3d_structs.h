@@ -6,13 +6,14 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
-/*   Updated: 2022/12/19 13:42:45 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/02 12:39:09 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_STRUCTS_H
 # define CUB3D_STRUCTS_H
 # include "MLX42/MLX42.h"
+# include "cub3d_enums.h"
 
 /**
 #=====================================#
@@ -81,6 +82,7 @@ typedef struct s_cub3d {
 	mlx_t		*mlx;
 	int			windowWidth;
 	int			windowHeight;
+	float		distToPlane;
 	t_map		map_data;
 	t_player	player_data;
 	double		last_time;
@@ -88,13 +90,20 @@ typedef struct s_cub3d {
 }	t_cub3d;
 
 typedef struct s_ray {
-	double		ray_angle;
-	float		wallHitX;
-	float		wallHitY;
+	double		rayAngle;
+	t_fVector2d	horizontal_step;
+	t_fVector2d	horizontal_wallHit;
+	t_fVector2d	vertical_step;
+	t_fVector2d	vertical_wallHit;
 	float		distance;
 	bool		wasHitVertical;
+	bool		wasHitHorizontal;
 	bool		isRayFacingUp;
-	bool		isRayFacingDown;
+	bool		isRayFacingRight;
+	e_direction	hit_wall_direction;
+	float		wall_height;
+	float		draw_start;
+	float		draw_end;
 }			t_ray;
 
 #endif

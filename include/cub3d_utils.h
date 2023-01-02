@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:13:37 by cpost             #+#    #+#             */
-/*   Updated: 2022/12/19 13:26:42 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/02 11:03:32 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,16 @@ bool	is_wall_at_location(t_map map_data, float y, float x);
  * @returns the normalized angle...
  */
 double	normalize_angle(double angle);
+
+/**
+ * @brief Get the distance between two points. Uses pythagoras.
+ * 
+ * @param x1 the first point x
+ * @param y1 the first point y
+ * @param x2 the second point x
+ * @param y2 the second point y
+ * @return the distance between the two points.
+ */
+float get_dist_between_points(float x1, float y1, float x2, float y2);
 
 #endif
