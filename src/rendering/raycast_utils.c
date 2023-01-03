@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:42:22 by merel             #+#    #+#             */
-/*   Updated: 2023/01/02 12:01:35 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 10:49:46 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 #include <struct.h>
 #include "libft.h"
 #include "cub3d_render.h"
+#include <stdio.h>
 
 bool	is_wall_at_location(t_map map_data, float y, float x)
 {
 	int	mapGridX;
 	int	mapGridY;
 
-	if (x < 0 || y < 0
-		|| x > map_data.n_column * TILE_SIZE
-		|| x > map_data.n_column * TILE_SIZE)
+	printf("checking if wall at location\n");
+	if (x <= 0 || y <= 0
+		|| x / TILE_SIZE >= map_data.n_column
+		|| y / TILE_SIZE >= map_data.n_row)
 		return (true);
 	mapGridX = floor(x / TILE_SIZE);
 	mapGridY = floor(y / TILE_SIZE);
-	return (map_data.map[mapGridY][mapGridX] == 1);
+	return (map_data.map[mapGridY][mapGridX] == '1');
 }
 
 double	normalize_angle(double angle)

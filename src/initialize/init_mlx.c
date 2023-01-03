@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:21:08 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/02 16:22:40 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 10:20:56 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void init_main_images(mlx_t *mlx, t_images *images, t_rgb floor,
 	images->ceiling = create_background_image(mlx, ceiling, 0, 0);
 	images->floor = create_background_image(mlx, floor, 0, WINDOW_HEIGHT / 2);
 	printf("background created!\n");
+	images->walls = alloc_check(mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT));
 	
 }
 

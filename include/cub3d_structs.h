@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
-/*   Updated: 2023/01/02 14:08:34 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 10:58:58 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ typedef struct s_Vector2d {
 */
 typedef struct s_player{
 	t_fVector2d	position;
-	int			turnDirection;
+	float		turnDirection;
 	int			walkDirection;
+	int			strafeDirection;
 	t_Vector2d	cameraPlane;
 	float		rotationAngle;
 	int			moveSpeed;
-	int			rotationSpeed;
+	float		rotationSpeed;
 }	t_player;
 
 typedef struct s_images{

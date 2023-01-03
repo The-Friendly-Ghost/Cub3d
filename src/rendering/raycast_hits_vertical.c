@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 11:18:26 by merel             #+#    #+#             */
-/*   Updated: 2023/01/02 16:28:19 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 10:36:09 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d_utils.h"
 #include "libft.h"
 #include "cub3d_render.h"
+#include "stdio.h"
 
 void	set_vertical_step(t_ray *ray)
 {
@@ -30,6 +31,7 @@ t_fVector2d	get_vertical_intercept(t_ray *ray, t_player player)
 {
 	t_fVector2d vertical_intercept;
 
+	printf("ray angle = %f\n", ray->rayAngle);
 	vertical_intercept.x = floor(player.position.x / TILE_SIZE) * TILE_SIZE;
 	if (ray->isRayFacingRight)
 		vertical_intercept.x += TILE_SIZE;
@@ -70,6 +72,7 @@ void	find_vertical_wall_hit(t_ray *ray, t_cub3d *cub3d)
 {
 	t_fVector2d vertical_intercept;
 
+	printf("trying to set vertical wall hit\n");
 	vertical_intercept = get_vertical_intercept(ray, cub3d->player_data);
 	set_vertical_step(ray);
 	set_vert_wall_hit(ray, cub3d, vertical_intercept);

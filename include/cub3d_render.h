@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:14:03 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/02 12:33:54 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 10:12:16 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <math.h>
 
 # define TILE_SIZE 32
-# define WINDOW_WIDTH 400
-# define WINDOW_HEIGHT 320
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 400
 # define FOV_ANGLE 60
 # define FOV FOV_ANGLE * (M_PI / 180)
 # define WALL_STRIP_WIDTH 1

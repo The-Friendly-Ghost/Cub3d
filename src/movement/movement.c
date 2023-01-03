@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:38:17 by merel             #+#    #+#             */
-/*   Updated: 2022/12/19 13:33:30 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:05:02 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,40 @@
 #include "cub3d_enums.h"
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-void	turn_player(t_player *player)
+static void	turn_player(t_player *player)
 {
 	player->rotationAngle += player->turnDirection * player->rotationSpeed;
+	//printf("player rotation = %f\n player turn direction= %f\n playerRotation speed = %f\n", player->rotationAngle, player->turnDirection, player->rotationSpeed);
 }
 
-void	try_move_player(t_map *map_data, t_player *player)
+static void	try_strafe_player(t_map *map_data, t_player *player)
+{
+	float	moveStep;
+	float	new_y;
+	float	new_x;
+
+	moveStep = player->strafeDirection * player->moveSpeed;
+	new_y = player->position.y
+		+ sin(player->rotationAngle - M_PI_2) * moveStep;
+	new_x = player->position.x
+		+ cos(player->rotationAngle - M_PI_2) * moveStep;
+	if (is_wall_at_location(*map_data, new_y, new_x))
+		return ;
+	player->position.y = new_y;
+	player->position.x = new_x;
+}
+
+static void	try_move_player(t_map *map_data, t_player *player)
 {
 	float	moveStep;
 	float	new_y;
 	float	new_x;
 
 	moveStep = player->walkDirection * player->moveSpeed;
-	new_y = player->position.y + moveStep * sinf(player->rotationAngle);
-	new_x = player->position.x + moveStep * cosf(player->rotationAngle);
+	new_y = player->position.y + moveStep * sin(player->rotationAngle);
+	new_x = player->position.x + moveStep * cos(player->rotationAngle);
 	if (is_wall_at_location(*map_data, new_y, new_x))
 		return ;
 	player->position.y = new_y;
@@ -50,31 +69,32 @@ void	key_pressed_and_hold(mlx_key_data_t keydata, t_map *map_data, t_player *pla
 	if (keydata.key == MLX_KEY_ESCAPE)
 		exit (0);
 	if (keydata.key == MLX_KEY_W)
-		player->walkDirection = +1;
-	// if (keydata.key == MLX_KEY_S)
-	if (keydata.key == MLX_KEY_A)
 		player->walkDirection = -1;
-	// if (keydata.key == MLX_KEY_D)
+	if (keydata.key == MLX_KEY_S)
+		player->walkDirection = +1;
+	if (keydata.key == MLX_KEY_A)
+		player->strafeDirection = -1;
+	if (keydata.key == MLX_KEY_D)
+		player->strafeDirection = +1;
 	if (keydata.key == MLX_KEY_LEFT)
 		player->turnDirection = -1;
 	if (keydata.key == MLX_KEY_RIGHT)
 		player->turnDirection = +1;
 	turn_player(player);
 	try_move_player(map_data, player);
+	try_strafe_player(map_data, player);
+	//printf("pressed a key\n");
 }
 
 void	key_released(mlx_key_data_t keydata, t_player *player)
 {
-	if (keydata.key == MLX_KEY_W)
+	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S)
 		player->walkDirection = 0;
-	// if (keydata.key == MLX_KEY_S)
-	if (keydata.key == MLX_KEY_A)
-		player->walkDirection = 0;
-	// if (keydata.key == MLX_KEY_D)
-	if (keydata.key == MLX_KEY_LEFT)
+	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
+		player->strafeDirection = 0;
+	if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_RIGHT)
 		player->turnDirection = 0;
-	if (keydata.key == MLX_KEY_RIGHT)
-		player->turnDirection = 0;
+	//printf("released a button\n");
 }
 
 void	key_hook(mlx_key_data_t keydata, void *param)

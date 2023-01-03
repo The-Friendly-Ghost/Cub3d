@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:04:52 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/02 12:32:05 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 10:42:42 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "cub3d_render.h"
 #include <limits.h>
+#include <stdio.h>
 
 /**
  * @brief Sets the distance to wall based on the closest wall hit (horizontal
@@ -68,17 +69,23 @@ static void set_hit_wall_direction(t_ray *ray)
 
 static void	set_ray_values(t_cub3d *cub3d, int column_id, t_ray *ray)
 {
+	printf("setting ray value\n");
 	ray->wasHitVertical = false;
 	ray->wasHitHorizontal = false;
 	ray->rayAngle = cub3d->player_data.rotationAngle + atan((column_id - 
 				(NUM_RAYS / 2)) / cub3d->distToPlane);
+	printf("ray angle set\n");
 	ray->isRayFacingUp = ray->rayAngle > 0 && ray->rayAngle < M_PI;
 	ray->isRayFacingRight = ray->rayAngle < (0.5 * M_PI) 
 				|| ray->rayAngle > (1.5 * M_PI);
+	printf("ray up or right set\n");
 	find_horizontal_wall_hit(ray, cub3d);
 	find_vertical_wall_hit(ray, cub3d);
+	printf("rotation = %f\n", cub3d->player_data.rotationAngle);
 	set_distance_to_wall(ray, cub3d->player_data.position, cub3d->player_data.rotationAngle);
 	set_hit_wall_direction(ray);
+	printf("completed setting ray value\n");
+
 }
 
 // 1. create an array of t_rays for num_rays
