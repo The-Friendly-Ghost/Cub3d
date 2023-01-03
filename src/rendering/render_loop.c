@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:02:12 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 11:57:56 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:14:26 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void set_draw_values(t_ray *rays)
 	while (column_id < NUM_RAYS)
 	{
 		ray = &rays[column_id];
+		//printf("raydistance= %f\n", ray->distance);
 		ray->wall_height = (TILE_SIZE / ray->distance) * distanceToPlane;
 		//printf("distance to plane = %f\n", distanceToPlane);
 		ray->draw_start = (WINDOW_HEIGHT / 2) - (ray->wall_height / 2);
@@ -94,7 +95,9 @@ static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 void	render(t_cub3d *cub3d_data)
 {
 	t_ray *rays;
+	bool	drawMiniRays;
 
+	drawMiniRays = true;
 	rays = cast_all_rays(cub3d_data);
 	if (cub3d_data->images.walls)
 	{
@@ -102,12 +105,20 @@ void	render(t_cub3d *cub3d_data)
 		cub3d_data->images.walls = alloc_check(mlx_new_image(cub3d_data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT));
 	}
 	draw_walls(cub3d_data, rays);
-	//mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.ceiling, 0, 0);
 	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.walls, 0, 0);
 	cub3d_data->images.walls->instances[0].z = 3;
 	cub3d_data->images.miniMap->instances[0].z = 4;
-	
-	
+	if (drawMiniRays)
+	{
+		if (cub3d_data->images.rays)
+			mlx_delete_image(cub3d_data->mlx, cub3d_data->images.rays);
+		cub3d_data->images.rays = alloc_check(mlx_new_image(cub3d_data->mlx,
+			cub3d_data->map_data.n_column * TILE_SIZE * MINI_SCALE,
+			cub3d_data->map_data.n_row * TILE_SIZE * MINI_SCALE));
+		draw_rays(cub3d_data->player_data, rays, cub3d_data->images.rays);
+		mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.rays, 0, 0);
+		cub3d_data->images.rays->instances[0].z = 5;
+	}
 	free(rays);
 }
 

@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:38:17 by merel             #+#    #+#             */
-/*   Updated: 2023/01/03 11:10:47 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:31:24 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 
 static void	turn_player(t_player *player)
 {
-	player->rotationAngle += player->turnDirection * player->rotationSpeed;
+	player->rotationAngle += player->turnDirection
+			* player->rotationSpeed;
 	//printf("player rotation = %f\n player turn direction= %f\n playerRotation speed = %f\n", player->rotationAngle, player->turnDirection, player->rotationSpeed);
 }
 
@@ -48,8 +49,8 @@ static void	try_move_player(t_map *map_data, t_player *player)
 	float	new_x;
 
 	moveStep = player->walkDirection * player->moveSpeed;
-	new_y = player->position.y + moveStep * sin(player->rotationAngle);
-	new_x = player->position.x + moveStep * cos(player->rotationAngle);
+	new_x = player->position.x + cos(player->rotationAngle) * moveStep;
+	new_y = player->position.y + sin(player->rotationAngle) * moveStep;
 	if (is_wall_at_location(*map_data, new_y, new_x))
 		return ;
 	player->position.y = new_y;
@@ -73,9 +74,9 @@ void	key_pressed_and_hold(mlx_key_data_t keydata, t_map *map_data, t_player *pla
 	if (keydata.key == MLX_KEY_S)
 		player->walkDirection = -1;
 	if (keydata.key == MLX_KEY_A)
-		player->strafeDirection = -1;
+		player->strafeDirection = 1;
 	if (keydata.key == MLX_KEY_D)
-		player->strafeDirection = +1;
+		player->strafeDirection = -1;
 	if (keydata.key == MLX_KEY_LEFT)
 		player->turnDirection = -1;
 	if (keydata.key == MLX_KEY_RIGHT)
@@ -83,7 +84,6 @@ void	key_pressed_and_hold(mlx_key_data_t keydata, t_map *map_data, t_player *pla
 	turn_player(player);
 	try_move_player(map_data, player);
 	try_strafe_player(map_data, player);
-	//printf("pressed a key\n");
 }
 
 void	key_released(mlx_key_data_t keydata, t_player *player)
@@ -94,7 +94,6 @@ void	key_released(mlx_key_data_t keydata, t_player *player)
 		player->strafeDirection = 0;
 	if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_RIGHT)
 		player->turnDirection = 0;
-	//printf("released a button\n");
 }
 
 void	key_hook(mlx_key_data_t keydata, void *param)

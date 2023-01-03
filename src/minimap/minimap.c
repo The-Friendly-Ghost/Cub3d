@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:22:08 by merel             #+#    #+#             */
-/*   Updated: 2023/01/03 11:55:53 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:00:53 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,30 @@
 #include "cub3d_colors.h"
 #include "cub3d_render.h"
 #include "cub3d_utils.h"
+
+static void	draw_line(mlx_image_t *image, t_player player, float endX, float endY)
+{
+	float	length;
+	float	stepX;
+	float	stepY;
+	t_rgb	red;
+
+	red.blue = 0;
+	red.red = 255;
+	red.green = 0;
+	length = get_dist_between_points((player.position.x * MINI_SCALE), 
+		(player.position.y * MINI_SCALE), endX, endY);
+	stepX = (endX - MINI_SCALE * player.position.x) / length;
+	stepY = (endY - MINI_SCALE * player.position.y) / length;
+	//printf("length line = %f\n", length);
+	while (length > 0)
+	{
+		mlx_put_pixel(image, endX, endY, convert_rgb_to_int(red));
+		endY -= stepY;
+		endX -= stepX;
+		--length;
+	}
+}
 
 static void	draw_square(t_cub3d *cub3d, float x, float y)
 {
@@ -42,6 +66,27 @@ static void	draw_square(t_cub3d *cub3d, float x, float y)
 	
 }
 
+// void	create_player_image(t_cub3d *cub3d, float x, float y){
+	
+// }
+
+void	draw_rays(t_player player, t_ray *rays, mlx_image_t *ray_image)
+{
+	int	i;
+
+	i = 0;
+	while (i < NUM_RAYS - 1)
+	{
+		if (rays[i].wasHitHorizontal)
+			draw_line(ray_image, player, rays[i].horizontal_wallHit.x * MINI_SCALE,
+				rays[i].horizontal_wallHit.y * MINI_SCALE);
+		else if (rays[i].wasHitVertical)
+			draw_line(ray_image, player, rays[i].vertical_wallHit.x * MINI_SCALE,
+				rays[i].vertical_wallHit.y * MINI_SCALE);
+		i++;
+	}
+}
+
 void	draw_mini_map(t_cub3d *cub3d, t_map map, t_player player, t_ray *rays)
 {
 	int		x;
@@ -51,7 +96,10 @@ void	draw_mini_map(t_cub3d *cub3d, t_map map, t_player player, t_ray *rays)
 	
 	(void) rays;
 	(void) player;
-	cub3d->images.miniMap = alloc_check(mlx_new_image(cub3d->mlx, map.n_column * TILE_SIZE * MINI_SCALE, map.n_row * TILE_SIZE * MINI_SCALE));
+	cub3d->images.miniMap = alloc_check(mlx_new_image(cub3d->mlx,
+		map.n_column * TILE_SIZE * MINI_SCALE,
+		map.n_row * TILE_SIZE * MINI_SCALE));
+	cub3d->images.rays = NULL;
 	y = 0;
 	stepy = 0;
 	while (y < map.n_row)

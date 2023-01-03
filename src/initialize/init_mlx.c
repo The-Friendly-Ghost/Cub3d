@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:21:08 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 11:53:49 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 14:57:43 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ void	fill_image(mlx_image_t *img, t_rgb rgb_color)
 static mlx_image_t	*create_background_image(mlx_t *mlx, t_rgb color, int posx, int posy)
 {
 	mlx_image_t	*image;
+	(void) posx;
+	(void) posy;
 
 	image = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT / 2);
 	if (!image)
 		exit_error("Failed to create background image\n", 1);
 	fill_image(image, color);
-	mlx_image_to_window(mlx, image, posx, posy);
+	//mlx_image_to_window(mlx, image, posx, posy);
 	return (image);
 }
 
@@ -58,7 +60,6 @@ static void init_main_images(mlx_t *mlx, t_images *images, t_rgb floor,
 	images->floor = create_background_image(mlx, floor, 0, WINDOW_HEIGHT / 2);
 	printf("background created!\n");
 	images->walls = alloc_check(mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT));
-	
 }
 
 void	init_mlx(t_cub3d *cub3d_data)
