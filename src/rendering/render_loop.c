@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:02:12 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/02 14:12:19 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/02 16:29:20 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "cub3d_colors.h"
 
 static void set_draw_values(t_ray *rays)
 {
@@ -41,11 +42,24 @@ static void set_draw_values(t_ray *rays)
 	}
 }
 
-static void draw_texture(t_cub3d *cub3d, t_ray ray, struct mlx_texture *texture)
+static void draw_texture(t_cub3d *cub3d, t_ray ray, struct mlx_texture *texture, int x)
 {
 	// TODO this is where you left off yo
 	// start getting the right pixel color
 	// then put that pixel on the screen
+	int	y;
+	(void) texture;
+	t_rgb	white;
+
+	y = ray.draw_start;
+	white.blue = 0;
+	white.green = 0;
+	white.red = 0;
+	while (y < ray.draw_end)
+	{
+		mlx_put_pixel(cub3d->images.walls, x, y, convert_rgb_to_int(white));
+		y++;
+	}
 }
 
 static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
@@ -57,13 +71,13 @@ static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 	while (i < NUM_RAYS)
 	{
 		if (rays[i].hit_wall_direction == NORTH)
-			draw_texture(cub3d, rays[i], cub3d->map_data.north_wall);
+			draw_texture(cub3d, rays[i], cub3d->map_data.north_wall, i);
 		else if (rays[i].hit_wall_direction == SOUTH)
-			draw_texture(cub3d, rays[i], cub3d->map_data.south_wall);
+			draw_texture(cub3d, rays[i], cub3d->map_data.south_wall, i);
 		else if (rays[i].hit_wall_direction == EAST)
-			draw_texture(cub3d, rays[i], cub3d->map_data.east_wall);
+			draw_texture(cub3d, rays[i], cub3d->map_data.east_wall, i);
 		else if (rays[i].hit_wall_direction == WEST)
-			draw_texture(cub3d, rays[i], cub3d->map_data.west_wall);
+			draw_texture(cub3d, rays[i], cub3d->map_data.west_wall, i);
 		i++;
 	}
 }
@@ -73,6 +87,10 @@ void	render(t_cub3d *cub3d_data)
 	t_ray *rays;
 
 	rays = cast_all_rays(cub3d_data);
+	draw_walls(cub3d_data, rays);
+	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.ceiling, 0, 0);
+	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.floor, 0, WINDOW_HEIGHT / 2);
+	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.walls, 0, 0);
 	free(rays);
 }
 

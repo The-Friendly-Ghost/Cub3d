@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 11:18:26 by merel             #+#    #+#             */
-/*   Updated: 2023/01/02 11:52:57 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/02 16:27:51 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	set_hor_wall_hit(t_ray *ray, t_cub3d *cub3d, t_fVector2d intercept)
 	
 	nextTouchX = intercept.x;
 	nextTouchY = intercept.y;
-	offset = offset;
+	offset = 0;
 	if (ray->isRayFacingUp)
 		offset = -1;
 	// this windows width height thing is not correct, please see how to do correct screen res
@@ -72,6 +72,6 @@ void	find_horizontal_wall_hit(t_ray *ray, t_cub3d *cub3d)
 
 	horizontal_intercept = get_horizontal_intercept(ray, cub3d->player_data);
 	set_horizontal_step(ray);
-	set_horizontal_wall_hit(ray, cub3d, horizontal_intercept);
+	set_hor_wall_hit(ray, cub3d, horizontal_intercept);
 	
 }

@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:21:08 by mevan-de          #+#    #+#             */
-/*   Updated: 2022/12/19 12:45:19 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/02 16:22:40 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	fill_image(mlx_image_t *img, t_rgb rgb_color)
 static mlx_image_t	*create_background_image(mlx_t *mlx, t_rgb color, int posx, int posy)
 {
 	mlx_image_t	*image;
+
 	image = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT / 2);
 	if (!image)
 		exit_error("Failed to create background image\n", 1);
