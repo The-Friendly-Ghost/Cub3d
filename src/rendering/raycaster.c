@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:04:52 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 10:42:42 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:15:07 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ static void	set_ray_values(t_cub3d *cub3d, int column_id, t_ray *ray)
 	printf("ray up or right set\n");
 	find_horizontal_wall_hit(ray, cub3d);
 	find_vertical_wall_hit(ray, cub3d);
-	printf("rotation = %f\n", cub3d->player_data.rotationAngle);
 	set_distance_to_wall(ray, cub3d->player_data.position, cub3d->player_data.rotationAngle);
 	set_hit_wall_direction(ray);
-	printf("completed setting ray value\n");
 
 }
 

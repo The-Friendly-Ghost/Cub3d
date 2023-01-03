@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 08:48:32 by cpost             #+#    #+#             */
-/*   Updated: 2023/01/03 10:58:58 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:43:58 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_images{
 	mlx_image_t	*floor;
 	mlx_image_t	*ceiling;
 	mlx_image_t	*walls;
+	mlx_image_t	*miniMap;
 }	t_images;
 
 typedef struct s_cub3d {

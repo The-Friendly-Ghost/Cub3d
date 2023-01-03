@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:02:12 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 10:51:00 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:57:56 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void set_draw_values(t_ray *rays)
 		ray->draw_start = (WINDOW_HEIGHT / 2) - (ray->wall_height / 2);
 		ray->draw_end = ray->draw_start + ray->wall_height;
 			//printf("start = %f\nend = %f", ray.draw_start, ray.draw_end);
-		if (ray->draw_end > WINDOW_HEIGHT)
+		if (ray->wall_height > WINDOW_HEIGHT)
 		{
 			ray->draw_start = 0;
 			ray->draw_end = WINDOW_HEIGHT;
@@ -51,14 +51,20 @@ static void draw_texture(t_cub3d *cub3d, t_ray ray, struct mlx_texture *texture,
 	// then put that pixel on the screen
 	(void) texture;
 	t_rgb	white;
+	int	width;
 
 	white.blue = 255;
 	white.green = 255;
 	white.red = 255;
 	while (ray.draw_start < ray.draw_end)
 	{
+		width = 0;
+		while (width < WALL_STRIP_WIDTH)
+		{
+			mlx_put_pixel(cub3d->images.walls, x + width, ray.draw_start, convert_rgb_to_int(white));
+			width++;
+		}
 		//printf("putting pixel\n");
-		mlx_put_pixel(cub3d->images.walls, x, ray.draw_start, convert_rgb_to_int(white));
 		ray.draw_start++;
 	}
 }
@@ -97,8 +103,11 @@ void	render(t_cub3d *cub3d_data)
 	}
 	draw_walls(cub3d_data, rays);
 	//mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.ceiling, 0, 0);
-	//mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.floor, 0, WINDOW_HEIGHT / 2);
 	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.walls, 0, 0);
+	cub3d_data->images.walls->instances[0].z = 3;
+	cub3d_data->images.miniMap->instances[0].z = 4;
+	
+	
 	free(rays);
 }
 

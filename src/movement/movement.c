@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:38:17 by merel             #+#    #+#             */
-/*   Updated: 2023/01/03 11:05:02 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:10:47 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	key_pressed_and_hold(mlx_key_data_t keydata, t_map *map_data, t_player *pla
 	if (keydata.key == MLX_KEY_ESCAPE)
 		exit (0);
 	if (keydata.key == MLX_KEY_W)
-		player->walkDirection = -1;
+		player->walkDirection = 1;
 	if (keydata.key == MLX_KEY_S)
-		player->walkDirection = +1;
+		player->walkDirection = -1;
 	if (keydata.key == MLX_KEY_A)
 		player->strafeDirection = -1;
 	if (keydata.key == MLX_KEY_D)

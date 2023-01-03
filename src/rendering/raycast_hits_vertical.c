@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 11:18:26 by merel             #+#    #+#             */
-/*   Updated: 2023/01/03 10:36:09 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:20:09 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	set_vert_wall_hit(t_ray *ray, t_cub3d *cub3d, t_fVector2d intercept)
 	while (nextTouchX >= 0 && nextTouchX / TILE_SIZE <= WINDOW_WIDTH
 		&& nextTouchY >= 0 && nextTouchY / TILE_SIZE <= WINDOW_HEIGHT)
 	{
-		if (is_wall_at_location(cub3d->map_data, (nextTouchY - 0.001), (nextTouchX + offset)))
+		if (is_wall_at_location(cub3d->map_data, (nextTouchY - 0.0001), (nextTouchX + offset)))
 		{
 			ray->vertical_wallHit.x = nextTouchX;
 			ray->vertical_wallHit.y = nextTouchY;

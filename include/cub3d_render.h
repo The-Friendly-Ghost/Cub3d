@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:14:03 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 10:12:16 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:31:55 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define FOV FOV_ANGLE * (M_PI / 180)
 # define WALL_STRIP_WIDTH 1
 # define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
+# define MINI_SCALE 0.2
 
 /**
  * @brief Initialize all MLX related things: Window, Keyhooks, loop, loophooks.
