@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:04:52 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 16:29:34 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:36:49 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	set_distance_to_wall(t_ray *ray, t_fVector2d playerPos, float player
 		ray->wasHitVertical = false;
 	}
 	ray->distance *= cos(ray->rayAngle - playerRotation);
-	printf("distance after correction = %f\n", ray->distance);
+	//printf("distance after correction = %f\n", ray->distance);
 }
 
 static void set_hit_wall_direction(t_ray *ray)
@@ -70,7 +70,7 @@ static void set_hit_wall_direction(t_ray *ray)
 
 static void	set_ray_values(t_cub3d *cub3d, t_ray *ray, float angle)
 {
-	printf("setting ray value\n");
+	//printf("setting ray value\n");
 	ray->wasHitVertical = false;
 	ray->wasHitHorizontal = false;
 	ray->rayAngle = normalize_angle(angle);
@@ -100,7 +100,7 @@ t_ray	*cast_all_rays(t_cub3d *cub3d)
 	{ 
 		set_ray_values(cub3d, &rays[i], rayAngle);
 		rayAngle += (float)FOV / (float)NUM_RAYS;
-		printf("rayAngle = %f\n", rayAngle);
+		//printf("rayAngle = %f\n", rayAngle);
 		i++;
 	}
 	return (rays);
