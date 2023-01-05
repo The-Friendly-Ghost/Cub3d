@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:39:40 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 16:32:54 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/05 10:12:22 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	init_player_vars(t_player *player_data, char **map)
 	player_data->turnDirection = 0;
 	player_data->walkDirection = 0;
 	player_data->strafeDirection = 0;
-	player_data->rotationSpeed = 2 * (M_PI / 180);
+	player_data->rotationSpeed = 1 * (M_PI / 180);
 	printf("set rotation speed\n");
-	player_data->moveSpeed = 2;
+	player_data->moveSpeed = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:21:08 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 14:57:43 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/05 10:11:06 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	init_mlx(t_cub3d *cub3d_data)
 	init_main_images(cub3d_data->mlx, &cub3d_data->images,
 				*(cub3d_data->map_data.floor), *(cub3d_data->map_data.ceiling));
 	draw_mini_map(cub3d_data, cub3d_data->map_data, cub3d_data->player_data, NULL);
-	mlx_key_hook(cub3d_data->mlx, key_hook, cub3d_data);
+	//mlx_key_hook(cub3d_data->mlx, key_hook, cub3d_data);
+	mlx_loop_hook(cub3d_data->mlx, key_loop, cub3d_data);
 	mlx_loop_hook(cub3d_data->mlx, update_loop, cub3d_data);
 	mlx_loop(cub3d_data->mlx);
 	mlx_terminate(cub3d_data->mlx);

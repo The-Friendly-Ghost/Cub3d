@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:39:59 by merel             #+#    #+#             */
-/*   Updated: 2022/12/19 13:28:13 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/05 10:10:10 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 /**
- * @brief the event that receives when a key has been pressed (or is being held)
- * 
- * @param keydata mlx keydata that contains the key info
- * @param param a pointer to something, advised to send cub3d_data, to be used
- * in this and subsequent functions.
- */
-void	key_hook(mlx_key_data_t keydata, void *param);
+
+*/
+void	key_loop(void *param);
+
+void	turn_player(t_player *player);
+
+void	try_strafe_player(t_map *map_data, t_player *player);
+
+void	try_move_player(t_map *map_data, t_player *player);
 
 #endif

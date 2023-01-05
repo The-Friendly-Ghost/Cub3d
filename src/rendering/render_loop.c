@@ -6,13 +6,14 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:02:12 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 16:48:32 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/05 10:11:29 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_utils.h"
 #include "cub3d_render.h"
 #include "cub3d_structs.h"
+#include "cub3d_movement.h"
 
 #include "libft.h"
 #include <stdlib.h>
@@ -128,6 +129,9 @@ void	update_loop(void *data)
 	t_cub3d	*cub3d_data;
 
 	cub3d_data = data;
+	turn_player(&cub3d_data->player_data);
+	try_move_player(&cub3d_data->map_data, &cub3d_data->player_data);
+	try_strafe_player(&cub3d_data->map_data, &cub3d_data->player_data);
 	//update_values()
 	//printf("turn direction = %i\n", cub3d_data->player_data.turnDirection);
 	render(cub3d_data);
