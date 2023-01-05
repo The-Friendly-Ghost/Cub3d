@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:02:12 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 16:14:26 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:48:32 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void draw_texture(t_cub3d *cub3d, t_ray ray, struct mlx_texture *texture,
 	white.blue = 255;
 	white.green = 255;
 	white.red = 255;
+	x = x * WALL_STRIP_WIDTH;
 	while (ray.draw_start < ray.draw_end)
 	{
 		width = 0;

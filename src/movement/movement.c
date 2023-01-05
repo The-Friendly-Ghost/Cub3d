@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:38:17 by merel             #+#    #+#             */
-/*   Updated: 2023/01/03 16:31:24 by merel            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:52:47 by merel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	key_pressed_and_hold(mlx_key_data_t keydata, t_map *map_data, t_player *pla
 	turn_player(player);
 	try_move_player(map_data, player);
 	try_strafe_player(map_data, player);
+	printf("holding\n");
 }
 
 void	key_released(mlx_key_data_t keydata, t_player *player)
@@ -94,6 +95,7 @@ void	key_released(mlx_key_data_t keydata, t_player *player)
 		player->strafeDirection = 0;
 	if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_RIGHT)
 		player->turnDirection = 0;
+	printf("releasidnfesfs\n");
 }
 
 void	key_hook(mlx_key_data_t keydata, void *param)
