@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d_render.h                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 11:14:03 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 16:50:34 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d_render.h                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
+/*   Updated: 2023/01/06 13:04:45 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <math.h>
 
 # define TILE_SIZE 32
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 400
+# define WINDOW_WIDTH 1024
+# define WINDOW_HEIGHT 512
 # define FOV_ANGLE 60
 # define FOV FOV_ANGLE * (M_PI / 180)
 # define WALL_STRIP_WIDTH 1

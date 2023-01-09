@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 11:21:08 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/05 10:11:06 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init_mlx.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
+/*   Updated: 2023/01/06 13:17:30 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void init_main_images(mlx_t *mlx, t_images *images, t_rgb floor,
 {
 	images->ceiling = create_background_image(mlx, ceiling, 0, 0);
 	images->floor = create_background_image(mlx, floor, 0, WINDOW_HEIGHT / 2);
+	//mlx_image_to_window(mlx, images->ceiling, 
 	printf("background created!\n");
 	images->walls = alloc_check(mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT));
 }

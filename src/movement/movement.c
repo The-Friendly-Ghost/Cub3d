@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 12:38:17 by merel             #+#    #+#             */
-/*   Updated: 2023/01/05 10:09:59 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   movement.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/19 12:38:17 by merel         #+#    #+#                 */
+/*   Updated: 2023/01/06 13:11:54 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	turn_player(t_player *player)
 {
 	player->rotationAngle += player->turnDirection
 			* player->rotationSpeed;
+	player->rotationAngle = normalize_angle(player->rotationAngle);
 	//printf("player rotation = %f\n player turn direction= %f\n playerRotation speed = %f\n", player->rotationAngle, player->turnDirection, player->rotationSpeed);
 }
 
