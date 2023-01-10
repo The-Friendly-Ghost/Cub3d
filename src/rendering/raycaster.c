@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:04:52 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 16:23:27 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 17:07:18 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,18 @@ static void	set_ray_values(t_cub3d *cub3d, t_ray *ray, float angle)
 
 t_ray	*cast_all_rays(t_cub3d *cub3d)
 {
-	int		i;
+	int		column;
 	double	ray_angle;
 	t_ray	*rays;
 
 	rays = alloc_check(ft_calloc(cub3d->num_rays + 1, sizeof(t_ray)));
-	i = 0;
-	ray_angle = cub3d->player_data.rotation_angle - (cub3d->fov / 2);
-	while (i < cub3d->num_rays)
+	column = 0;
+	while (column < cub3d->num_rays)
 	{
-		set_ray_values(cub3d, &rays[i], ray_angle);
-		ray_angle += cub3d->fov / cub3d->num_rays;
-		i++;
+		ray_angle = cub3d->player_data.rotation_angle
+			+ atan((column - cub3d->num_rays / 2) / cub3d->distance_to_plane);
+		set_ray_values(cub3d, &rays[column], ray_angle);
+		column++;
 	}
 	return (rays);
 }

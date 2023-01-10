@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 13:39:40 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 16:03:10 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 17:03:52 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void	init_player_vars(t_player *player_data, char **map)
 	player_data->turn_direction = 0;
 	player_data->walk_direction = 0;
 	player_data->strafe_direction = 0;
-	player_data->rotation_speed = 1 * (M_PI / 180);
+	player_data->rotation_speed = 0.5 * (M_PI / 180);
 	player_data->move_speed = 1;
 }
