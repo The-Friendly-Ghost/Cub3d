@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycast_hits_horizontal.c                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 11:18:26 by merel             #+#    #+#             */
-/*   Updated: 2023/01/03 16:25:28 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycast_hits_horizontal.c                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/01/02 11:18:26 by merel         #+#    #+#                 */
+/*   Updated: 2023/01/10 12:53:58 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,22 @@
 
 void	set_hor_wall_hit(t_ray *ray, t_cub3d *cub3d, t_fVector2d intercept)
 {
-	float	nextTouchX;
-	float	nextTouchY;
+	float	checkY;
 	
-	nextTouchX = intercept.x;
-	nextTouchY = intercept.y;
-	if (ray->isRayFacingUp)
-		nextTouchY--;
-	while (nextTouchX >= 0 && nextTouchX / TILE_SIZE <= WINDOW_WIDTH
-		&& nextTouchY >= 0 && nextTouchY / TILE_SIZE <= WINDOW_HEIGHT)
+	while (is_intercept_in_range(intercept, cub3d->map_data))
 	{
-		if (is_wall_at_location(cub3d->map_data, nextTouchY, nextTouchX))
+		checkY = intercept.y;
+		if (ray->isRayFacingUp)
+			checkY--;
+		if (is_wall_at_location(cub3d->map_data, checkY, intercept.x))
 		{
 			ray->wasHitHorizontal = true;
-			ray->horizontal_wallHit.x = nextTouchX;
-			ray->horizontal_wallHit.y = nextTouchY;
+			ray->horizontal_wallHit.x = intercept.x;
+			ray->horizontal_wallHit.y = intercept.y;
 			return ;
 		}
-		nextTouchX += ray->horizontal_step.x;
-		nextTouchY += ray->horizontal_step.y;
+		intercept.x += ray->horizontal_step.x;
+		intercept.y += ray->horizontal_step.y;
 	}
 	ray->wasHitHorizontal = false;
 }

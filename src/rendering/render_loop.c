@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/06 13:16:23 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 12:54:42 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 {
 	int i;
 
-	printf("setting draw values\n");
 	set_draw_values(rays);
-		printf("draw values set\n");
 	i = 0;
 	while (i < NUM_RAYS - 2)
 	{
@@ -90,11 +88,8 @@ static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 			draw_texture(cub3d, rays[i], cub3d->map_data.east_wall, i);
 		else if (rays[i].hit_wall_direction == WEST)
 			draw_texture(cub3d, rays[i], cub3d->map_data.west_wall, i);
-		else
-			printf("no direction set\n");
 		i++;
 	}
-		printf("done putting pixels\n");
 }
 
 void	render(t_cub3d *cub3d_data)
@@ -112,7 +107,7 @@ void	render(t_cub3d *cub3d_data)
 	draw_walls(cub3d_data, rays);
 	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.walls, 0, 0);
 	mlx_set_instance_depth(cub3d_data->images.walls->instances, 3);
-	mlx_set_instance_depth(cub3d_data->images.walls->instances, 4);
+	mlx_set_instance_depth(cub3d_data->images.miniMap->instances, 4);
 	//cub3d_data->images.walls->instances[0].z = 3;
 //	cub3d_data->images.miniMap->instances[0].z = 4;
 	if (drawMiniRays)

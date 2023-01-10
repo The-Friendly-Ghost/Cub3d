@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mlx_movement.c                                     :+:    :+:            */
+/*   raycast_hits_utils.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mevan-de <mevan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/06 11:54:06 by mevan-de      #+#    #+#                 */
-/*   Updated: 2022/12/12 13:46:13 by mevan-de      ########   odam.nl         */
+/*   Created: 2023/01/10 12:46:42 by mevan-de      #+#    #+#                 */
+/*   Updated: 2023/01/10 12:48:46 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_utils.h"
+#include "cub3d_structs.h"
 #include "cub3d_render.h"
-#include "../lib/MLX42/include/MLX42/MLX42.h"
-#include "libft.h"
 
-// move all key hook functions here
+bool	is_intercept_in_range(t_fVector2d intercept, t_map map_data)
+{
+	return (
+		intercept.x >= 0
+		&& intercept.x / TILE_SIZE <= TILE_SIZE * map_data.n_column
+		&& intercept.y >= 0
+		&& intercept.y / TILE_SIZE <= TILE_SIZE * map_data.n_row);
+}

@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/06 13:04:45 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 12:52:13 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,16 @@ void	find_horizontal_wall_hit(t_ray *ray, t_cub3d *cub3d);
  * @param cub3d cub3d data for the map and player data
  */
 void	find_vertical_wall_hit(t_ray *ray, t_cub3d *cub3d);
+
+/**
+ * @brief checks if the intercept is in range, used for checking the next intercept
+ * for both vertical and horizontal intercepts.
+ * 
+ * @param intercept the place on the map to check
+ * @param map data used to check the n_row and n_column
+ * @return true if it's a valid place on the map, false if it's outside the map's 
+ * range
+*/
+bool	is_intercept_in_range(t_fVector2d intercept, t_map map_data);
 
 #endif

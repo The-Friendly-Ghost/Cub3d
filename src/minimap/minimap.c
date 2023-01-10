@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/03 11:22:08 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/06 13:46:26 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 13:03:59 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	draw_square(t_cub3d *cub3d, float x, float y)
 	black_converted = convert_rgb_to_int(black);
 	x_start = x;
 	y_start = y;
-	printf("starting on square\n");
-	while (y + 1< y_start + (MINI_SCALE * TILE_SIZE))
+	//printf("starting on square\n");
+	while (y < y_start + (MINI_SCALE * TILE_SIZE))
 	{
 		x = x_start;
 		while (x < x_start + (MINI_SCALE * TILE_SIZE))
@@ -64,7 +64,7 @@ static void	draw_square(t_cub3d *cub3d, float x, float y)
 		}
 		y++;
 	}
-	printf("done with square\n");
+	//printf("done with square\n");
 	
 }
 
@@ -99,8 +99,8 @@ void	draw_mini_map(t_cub3d *cub3d, t_map map, t_player player, t_ray *rays)
 	(void) rays;
 	(void) player;
 	cub3d->images.miniMap = alloc_check(mlx_new_image(cub3d->mlx,
-		map.n_column * TILE_SIZE * MINI_SCALE,
-		map.n_row * TILE_SIZE * MINI_SCALE));
+		map.n_column * TILE_SIZE * MINI_SCALE + 1,
+		map.n_row * TILE_SIZE * MINI_SCALE + 1));
 	cub3d->images.rays = NULL;
 	y = 0;
 	stepy = 0;

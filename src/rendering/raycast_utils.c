@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/02 10:42:22 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/06 13:53:41 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/09 16:36:58 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ bool	is_wall_at_location(t_map map_data, float y, float x)
 
 double	normalize_angle(double angle)
 {
-	if (angle > (2 * M_PI))
-		angle = fmod(angle, (2 * M_PI));
+	angle = fmod(angle, (2 * M_PI));
 	if (angle < 0)
-		angle += (2 * M_1_PI);
+		angle += (2 * M_PI);
 	return (angle);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycaster.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 11:04:52 by mevan-de          #+#    #+#             */
-/*   Updated: 2023/01/03 16:36:49 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycaster.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/06 11:04:52 by mevan-de      #+#    #+#                 */
+/*   Updated: 2023/01/09 16:47:14 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	set_ray_values(t_cub3d *cub3d, t_ray *ray, float angle)
 	find_vertical_wall_hit(ray, cub3d);
 	set_distance_to_wall(ray, cub3d->player_data.position, cub3d->player_data.rotationAngle);
 	set_hit_wall_direction(ray);
-
 }
 
 // 1. create an array of t_rays for num_rays
@@ -90,7 +89,7 @@ static void	set_ray_values(t_cub3d *cub3d, t_ray *ray, float angle)
 t_ray	*cast_all_rays(t_cub3d *cub3d)
 {
 	int		i;
-	float	rayAngle;
+	double	rayAngle;
 	t_ray	*rays;
 
 	rays = alloc_check(ft_calloc(NUM_RAYS, sizeof(t_ray)));
@@ -99,7 +98,7 @@ t_ray	*cast_all_rays(t_cub3d *cub3d)
 	while (i < NUM_RAYS)
 	{ 
 		set_ray_values(cub3d, &rays[i], rayAngle);
-		rayAngle += (float)FOV / (float)NUM_RAYS;
+		rayAngle += FOV / NUM_RAYS * WALL_STRIP_WIDTH;
 		//printf("rayAngle = %f\n", rayAngle);
 		i++;
 	}
