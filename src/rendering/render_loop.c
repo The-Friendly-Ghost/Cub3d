@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 16:25:40 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:40:39 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,8 @@ void	render(t_cub3d *cub3d_data)
 	mlx_set_instance_depth(cub3d_data->images.walls->instances, 3);
 	mlx_set_instance_depth(cub3d_data->images.mini_map->instances, 4);
 	if (should_draw_rays)
-	{
-		if (cub3d_data->images.rays)
-			mlx_delete_image(cub3d_data->mlx, cub3d_data->images.rays);
-		cub3d_data->images.rays = alloc_check(mlx_new_image(cub3d_data->mlx,
-					cub3d_data->map_data.n_column * TILE_SIZE * MINI_SCALE,
-					cub3d_data->map_data.n_row * TILE_SIZE * MINI_SCALE));
-		draw_rays(cub3d_data->player_data, rays, cub3d_data->images.rays,
+		draw_rays(cub3d_data->player_data, rays, cub3d_data,
 			cub3d_data->num_rays);
-		mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.rays, 0, 0);
-		cub3d_data->images.rays->instances[0].z = 5;
-	}
 	free(rays);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mevan-de <mevan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 16:29:23 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 16:33:26 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:43:20 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,38 @@ static void	draw_square(mlx_image_t *image, float x, float y, float size)
 	}
 }
 
-void	draw_rays(t_player player, t_ray *rays, mlx_image_t *ray_image,
+void	draw_rays(t_player player, t_ray *rays, t_cub3d *cub3d_data,
 	float num_rays)
 {
 	int	i;
 
 	i = 0;
+	if (cub3d_data->images.rays)
+		mlx_delete_image(cub3d_data->mlx, cub3d_data->images.rays);
+	cub3d_data->images.rays = alloc_check(mlx_new_image(cub3d_data->mlx,
+				cub3d_data->map_data.n_column * TILE_SIZE * MINI_SCALE,
+				cub3d_data->map_data.n_row * TILE_SIZE * MINI_SCALE));
 	while (i < num_rays - 1)
 	{
 		if (rays[i].was_hit_horizontal)
-			draw_line(ray_image, player, rays[i].horizontal_wall_hit.x
+			draw_line(cub3d_data->images.rays, player,
+				rays[i].horizontal_wall_hit.x
 				* MINI_SCALE, rays[i].horizontal_wall_hit.y * MINI_SCALE);
 		else if (rays[i].was_hit_vertical)
-			draw_line(ray_image, player, rays[i].vertical_wall_hit.x
+			draw_line(cub3d_data->images.rays, player,
+				rays[i].vertical_wall_hit.x
 				* MINI_SCALE, rays[i].vertical_wall_hit.y * MINI_SCALE);
 		i++;
 	}
+	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.rays, 0, 0);
+	mlx_set_instance_depth(cub3d_data->images.rays->instances, 5);
+}
+
+void	create_map_image(t_cub3d *cub3d, t_map map)
+{
+	cub3d->images.mini_map = alloc_check(mlx_new_image(cub3d->mlx,
+				map.n_column * TILE_SIZE * MINI_SCALE + 1,
+				map.n_row * TILE_SIZE * MINI_SCALE + 1));
 }
 
 void	draw_mini_map(t_cub3d *cub3d, t_map map)
@@ -90,9 +106,7 @@ void	draw_mini_map(t_cub3d *cub3d, t_map map)
 	float	step_x;
 	float	step_y;
 
-	cub3d->images.mini_map = alloc_check(mlx_new_image(cub3d->mlx,
-				map.n_column * TILE_SIZE * MINI_SCALE + 1,
-				map.n_row * TILE_SIZE * MINI_SCALE + 1));
+	create_map_image(cub3d, map);
 	y = 0;
 	step_y = 0;
 	while (y < map.n_row)

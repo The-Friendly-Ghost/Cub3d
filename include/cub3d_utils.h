@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/10 16:28:12 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:39:57 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ float	get_dist_between_points(float x1, float y1, float x2, float y2);
 
 void	draw_mini_map(t_cub3d *cub3d, t_map map);
 
-void	draw_rays(t_player player, t_ray *rays, mlx_image_t *ray_image,
+void	draw_rays(t_player player, t_ray *rays, t_cub3d *cub3d_data,
 			float num_rays);
 
 #endif
