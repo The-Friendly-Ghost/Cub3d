@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/05 10:07:10 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/10 13:03:30 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:29:43 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,33 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/**
-
- */
 void	check_key_pressed(mlx_t *mlx, t_player *player)
 {
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		exit (0);
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
-		player->walkDirection = 1;
+		player->walk_direction = 1;
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
-		player->walkDirection = -1;
+		player->walk_direction = -1;
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
-		player->strafeDirection = 1;
+		player->strafe_direction = 1;
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
-		player->strafeDirection = -1;
+		player->strafe_direction = -1;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		player->turnDirection = -1;
+		player->turn_direction = -1;
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		player->turnDirection = +1;
+		player->turn_direction = +1;
 }
 
 void	check_key_released(mlx_t *mlx, t_player *player)
 {
 	if (!mlx_is_key_down(mlx, MLX_KEY_W) && !mlx_is_key_down(mlx, MLX_KEY_S))
-		player->walkDirection = 0;
+		player->walk_direction = 0;
 	if (!mlx_is_key_down(mlx, MLX_KEY_A) && !mlx_is_key_down(mlx, MLX_KEY_D))
-		player->strafeDirection = 0;
+		player->strafe_direction = 0;
 	if (!mlx_is_key_down(mlx, MLX_KEY_LEFT)
 		&& !mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		player->turnDirection = 0;
+		player->turn_direction = 0;
 }
 
 void	key_loop(void *param)

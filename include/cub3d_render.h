@@ -6,12 +6,12 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 15:31:01 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:26:56 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_MLX_H
-# define CUB3D_MLX_H
+#ifndef CUB3D_RENDER_H
+# define CUB3D_RENDER_H
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "cub3d_structs.h"
 # include <math.h>
@@ -20,9 +20,7 @@
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 512
 # define FOV_ANGLE 60
-# define FOV (FOV_ANGLE * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
-# define NUM_RAYS (WINDOW_WIDTH / WALL_STRIP_WIDTH)
 # define MINI_SCALE 0.2
 
 /**
@@ -68,13 +66,13 @@ void	find_horizontal_wall_hit(t_ray *ray, t_cub3d *cub3d);
 void	find_vertical_wall_hit(t_ray *ray, t_cub3d *cub3d);
 
 /**
- * @brief checks if the intercept is in range, used for checking the next intercept
- * for both vertical and horizontal intercepts.
+ * @brief checks if the intercept is in range, used for checking the next
+ * intercept for both vertical and horizontal intercepts.
  * 
  * @param intercept the place on the map to check
  * @param map data used to check the n_row and n_column
- * @return true if it's a valid place on the map, false if it's outside the map's 
- * range
+ * @return true if it's a valid place on the map, false if it's outside
+ * the map's range.
 */
 bool	is_intercept_in_range(t_fVector2d intercept, t_map map_data);
 

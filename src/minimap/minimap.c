@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   minimap.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*   By: mevan-de <mevan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/01/03 11:22:08 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/10 15:33:31 by mevan-de      ########   odam.nl         */
+/*   Created: 2023/01/10 16:29:23 by mevan-de      #+#    #+#                 */
+/*   Updated: 2023/01/10 16:33:26 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 #include "cub3d_render.h"
 #include "cub3d_utils.h"
 
-static void	draw_line(mlx_image_t *image, t_player player, float endX, float endY)
+static void	draw_line(mlx_image_t *image, t_player player,
+	float endX, float endY)
 {
 	float	length;
-	float	stepX;
-	float	stepY;
+	float	step_x;
+	float	step_y;
 	t_rgb	red;
 
 	red.blue = 0;
 	red.red = 255;
 	red.green = 0;
-	length = get_dist_between_points((player.position.x * MINI_SCALE), 
-		(player.position.y * MINI_SCALE), endX, endY);
-	stepX = (endX - MINI_SCALE * player.position.x) / length;
-	stepY = (endY - MINI_SCALE * player.position.y) / length;
-	//printf("length line = %f\n", length);
+	length = get_dist_between_points((player.position.x * MINI_SCALE),
+			(player.position.y * MINI_SCALE), endX, endY);
+	step_x = (endX - MINI_SCALE * player.position.x) / length;
+	step_y = (endY - MINI_SCALE * player.position.y) / length;
 	while (length > 0)
 	{
 		mlx_put_pixel(image, endX, endY, convert_rgb_to_int(red));
-		endY -= stepY;
-		endX -= stepX;
+		endY -= step_y;
+		endX -= step_x;
 		length--;
 	}
 }
@@ -53,7 +53,6 @@ static void	draw_square(mlx_image_t *image, float x, float y, float size)
 	black_converted = convert_rgb_to_int(black);
 	x_start = x;
 	y_start = y;
-	//printf("starting on square\n");
 	while (y < y_start + size)
 	{
 		x = x_start;
@@ -64,60 +63,52 @@ static void	draw_square(mlx_image_t *image, float x, float y, float size)
 		}
 		y++;
 	}
-	//printf("done with square\n");
-	
 }
 
-// void	create_player_image(t_cub3d *cub3d, float x, float y){
-	
-// }
-
-void	draw_rays(t_player player, t_ray *rays, mlx_image_t *ray_image)
+void	draw_rays(t_player player, t_ray *rays, mlx_image_t *ray_image,
+	float num_rays)
 {
 	int	i;
 
 	i = 0;
-	while (i < NUM_RAYS - 1)
+	while (i < num_rays - 1)
 	{
-		if (rays[i].wasHitHorizontal)
-			draw_line(ray_image, player, rays[i].horizontal_wallHit.x * MINI_SCALE,
-				rays[i].horizontal_wallHit.y * MINI_SCALE);
-		else if (rays[i].wasHitVertical)
-			draw_line(ray_image, player, rays[i].vertical_wallHit.x * MINI_SCALE,
-				rays[i].vertical_wallHit.y * MINI_SCALE);
+		if (rays[i].was_hit_horizontal)
+			draw_line(ray_image, player, rays[i].horizontal_wall_hit.x
+				* MINI_SCALE, rays[i].horizontal_wall_hit.y * MINI_SCALE);
+		else if (rays[i].was_hit_vertical)
+			draw_line(ray_image, player, rays[i].vertical_wall_hit.x
+				* MINI_SCALE, rays[i].vertical_wall_hit.y * MINI_SCALE);
 		i++;
 	}
 }
 
-void	draw_mini_map(t_cub3d *cub3d, t_map map, t_player player, t_ray *rays)
+void	draw_mini_map(t_cub3d *cub3d, t_map map)
 {
 	int		x;
 	int		y;
-	float	stepx;
-	float	stepy;
-	
-	(void) rays;
-	(void) player;
-	cub3d->images.miniMap = alloc_check(mlx_new_image(cub3d->mlx,
-		map.n_column * TILE_SIZE * MINI_SCALE + 1,
-		map.n_row * TILE_SIZE * MINI_SCALE + 1));
-	cub3d->images.rays = NULL;
+	float	step_x;
+	float	step_y;
+
+	cub3d->images.mini_map = alloc_check(mlx_new_image(cub3d->mlx,
+				map.n_column * TILE_SIZE * MINI_SCALE + 1,
+				map.n_row * TILE_SIZE * MINI_SCALE + 1));
 	y = 0;
-	stepy = 0;
+	step_y = 0;
 	while (y < map.n_row)
 	{
 		x = 0;
-		stepx = 0;
+		step_x = 0;
 		while (x < map.n_column)
 		{
 			if (map.map[y][x] == '1')
-				draw_square(cub3d->images.miniMap, stepx, stepy,
+				draw_square(cub3d->images.mini_map, step_x, step_y,
 					(MINI_SCALE * TILE_SIZE));
-			stepx += (MINI_SCALE * TILE_SIZE);
+			step_x += (MINI_SCALE * TILE_SIZE);
 			x++;
 		}
-		stepy += (MINI_SCALE * TILE_SIZE);
+		step_y += (MINI_SCALE * TILE_SIZE);
 		y++;
 	}
-	mlx_image_to_window(cub3d->mlx, cub3d->images.miniMap, 0, 0);
+	mlx_image_to_window(cub3d->mlx, cub3d->images.mini_map, 0, 0);
 }

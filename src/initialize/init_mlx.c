@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/06 13:17:30 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:12:25 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,27 @@ void	fill_image(mlx_image_t *img, t_rgb rgb_color)
 	}
 }
 
-static mlx_image_t	*create_background_image(mlx_t *mlx, t_rgb color, int posx, int posy)
+static mlx_image_t	*create_background_image(mlx_t *mlx, t_rgb color)
 {
 	mlx_image_t	*image;
-	(void) posx;
-	(void) posy;
 
 	image = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT / 2);
 	if (!image)
 		exit_error("Failed to create background image\n", 1);
 	fill_image(image, color);
-	//mlx_image_to_window(mlx, image, posx, posy);
 	return (image);
 }
 
-static void init_main_images(mlx_t *mlx, t_images *images, t_rgb floor,
+static void	init_main_images(mlx_t *mlx, t_images *images, t_rgb floor,
 	t_rgb ceiling)
 {
-	images->ceiling = create_background_image(mlx, ceiling, 0, 0);
-	images->floor = create_background_image(mlx, floor, 0, WINDOW_HEIGHT / 2);
-	//mlx_image_to_window(mlx, images->ceiling, 
-	printf("background created!\n");
-	images->walls = alloc_check(mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT));
+	images->ceiling = create_background_image(mlx, ceiling);
+	images->floor = create_background_image(mlx, floor);
+	mlx_image_to_window(mlx, images->ceiling, 0, 0);
+	mlx_image_to_window(mlx, images->floor, 0, WINDOW_HEIGHT / 2);
+	images->walls = alloc_check(
+			mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT));
+	images->rays = NULL;
 }
 
 void	init_mlx(t_cub3d *cub3d_data)
@@ -69,9 +68,8 @@ void	init_mlx(t_cub3d *cub3d_data)
 	if (!cub3d_data->mlx)
 		exit_error("Failed to init MLX\n", 1);
 	init_main_images(cub3d_data->mlx, &cub3d_data->images,
-				*(cub3d_data->map_data.floor), *(cub3d_data->map_data.ceiling));
-	draw_mini_map(cub3d_data, cub3d_data->map_data, cub3d_data->player_data, NULL);
-	//mlx_key_hook(cub3d_data->mlx, key_hook, cub3d_data);
+		*(cub3d_data->map_data.floor), *(cub3d_data->map_data.ceiling));
+	draw_mini_map(cub3d_data, cub3d_data->map_data);
 	mlx_loop_hook(cub3d_data->mlx, key_loop, cub3d_data);
 	mlx_loop_hook(cub3d_data->mlx, update_loop, cub3d_data);
 	mlx_loop(cub3d_data->mlx);

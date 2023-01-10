@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 15:29:54 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:25:40 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,18 @@
 #include <stdio.h>
 #include "cub3d_colors.h"
 
-static void set_draw_values(t_ray *rays)
+static void	set_draw_values(t_ray *rays, float distance_to_plane,
+	float num_rays)
 {
 	int		column_id;
-	float	distanceToPlane;
 	t_ray	*ray;
 
 	column_id = 0;
-	distanceToPlane = (WINDOW_WIDTH / 2) / tan(FOV / 2);
-	while (column_id <= NUM_RAYS)
+	while (column_id < num_rays)
 	{
 		ray = &rays[column_id];
-		//printf("raydistance= %f\n", ray->distance);
-		ray->wall_height = ((float)TILE_SIZE / ray->distance) * distanceToPlane;
-		//printf("distance to plane = %f\n", distanceToPlane);
+		ray->wall_height = ((float)TILE_SIZE / ray->distance)
+			* distance_to_plane;
 		ray->draw_start = (WINDOW_HEIGHT / 2) - (ray->wall_height / 2);
 		ray->draw_end = ray->draw_start + ray->wall_height;
 		if (ray->wall_height > WINDOW_HEIGHT)
@@ -45,15 +43,13 @@ static void set_draw_values(t_ray *rays)
 	}
 }
 
-static void draw_texture(t_cub3d *cub3d, t_ray ray, struct mlx_texture *texture, int x)
+static void	draw_texture(t_cub3d *cub3d, t_ray ray,
+	struct mlx_texture *texture, int x)
 {
-	// TODO this is where you left off yo
-	// start getting the right pixel color
-	// then put that pixel on the screen
-	(void) texture;
 	t_rgb	white;
-	int	width;
+	int		width;
 
+	(void) texture;
 	white.blue = 255;
 	white.green = 255;
 	white.red = 255;
@@ -63,21 +59,21 @@ static void draw_texture(t_cub3d *cub3d, t_ray ray, struct mlx_texture *texture,
 		width = 0;
 		while (width < WALL_STRIP_WIDTH)
 		{
-			mlx_put_pixel(cub3d->images.walls, x + width, ray.draw_start, convert_rgb_to_int(white));
+			mlx_put_pixel(cub3d->images.walls, x + width, ray.draw_start,
+				convert_rgb_to_int(white));
 			width++;
 		}
-		//printf("putting pixel\n");
 		ray.draw_start++;
 	}
 }
 
 static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 {
-	int i;
+	int	i;
 
-	set_draw_values(rays);
+	set_draw_values(rays, cub3d->distance_to_plane, cub3d->num_rays);
 	i = 0;
-	while (i < NUM_RAYS)
+	while (i < cub3d->num_rays)
 	{
 		if (rays[i].hit_wall_direction == NORTH)
 			draw_texture(cub3d, rays[i], cub3d->map_data.north_wall, i);
@@ -93,28 +89,30 @@ static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 
 void	render(t_cub3d *cub3d_data)
 {
-	t_ray *rays;
-	bool	drawMiniRays;
+	t_ray	*rays;
+	bool	should_draw_rays;
 
-	drawMiniRays = true;
+	should_draw_rays = true;
 	rays = cast_all_rays(cub3d_data);
 	if (cub3d_data->images.walls)
 	{
 		mlx_delete_image(cub3d_data->mlx, cub3d_data->images.walls);
-		cub3d_data->images.walls = alloc_check(mlx_new_image(cub3d_data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT));
+		cub3d_data->images.walls = alloc_check(mlx_new_image(cub3d_data->mlx,
+					WINDOW_WIDTH, WINDOW_HEIGHT));
 	}
 	draw_walls(cub3d_data, rays);
 	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.walls, 0, 0);
 	mlx_set_instance_depth(cub3d_data->images.walls->instances, 3);
-	mlx_set_instance_depth(cub3d_data->images.miniMap->instances, 4);
-	if (drawMiniRays)
+	mlx_set_instance_depth(cub3d_data->images.mini_map->instances, 4);
+	if (should_draw_rays)
 	{
 		if (cub3d_data->images.rays)
 			mlx_delete_image(cub3d_data->mlx, cub3d_data->images.rays);
 		cub3d_data->images.rays = alloc_check(mlx_new_image(cub3d_data->mlx,
-			cub3d_data->map_data.n_column * TILE_SIZE * MINI_SCALE,
-			cub3d_data->map_data.n_row * TILE_SIZE * MINI_SCALE));
-		draw_rays(cub3d_data->player_data, rays, cub3d_data->images.rays);
+					cub3d_data->map_data.n_column * TILE_SIZE * MINI_SCALE,
+					cub3d_data->map_data.n_row * TILE_SIZE * MINI_SCALE));
+		draw_rays(cub3d_data->player_data, rays, cub3d_data->images.rays,
+			cub3d_data->num_rays);
 		mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.rays, 0, 0);
 		cub3d_data->images.rays->instances[0].z = 5;
 	}

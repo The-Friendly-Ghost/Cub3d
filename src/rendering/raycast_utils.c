@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/02 10:42:22 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/09 16:36:58 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:32:18 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 
 bool	is_wall_at_location(t_map map_data, float y, float x)
 {
-	int	mapGridX;
-	int	mapGridY;
+	int	map_grid_x;
+	int	map_grid_y;
 
 	if (x <= 0 || y <= 0
 		|| x / TILE_SIZE >= map_data.n_column
 		|| y / TILE_SIZE >= map_data.n_row)
 		return (true);
-	mapGridX = floor(x / TILE_SIZE);
-	mapGridY = floor(y / TILE_SIZE);
-	return (map_data.map[mapGridY][mapGridX] == '1');
+	map_grid_x = floor(x / TILE_SIZE);
+	map_grid_y = floor(y / TILE_SIZE);
+	return (map_data.map[map_grid_y][map_grid_x] == '1');
 }
 
 double	normalize_angle(double angle)
@@ -38,7 +38,7 @@ double	normalize_angle(double angle)
 	return (angle);
 }
 
-float get_dist_between_points(float x1, float y1, float x2, float y2)
+float	get_dist_between_points(float x1, float y1, float x2, float y2)
 {
 	return (sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2)));
 }

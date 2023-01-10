@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:04:52 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 15:29:39 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:23:27 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,44 +25,44 @@
  * @param ray the ray to set the distance for
  * @param playerPos the current player position
  */
-static void	set_distance_to_wall(t_ray *ray, t_fVector2d playerPos, float playerRotation)
+static void	set_distance_to_wall(t_ray *ray, t_fVector2d playerPos,
+	float playerRotation)
 {
 	float	distance_hor;
 	float	distance_vert;
 
 	distance_hor = MAXFLOAT;
 	distance_vert = MAXFLOAT;
-	if (ray->wasHitHorizontal)
+	if (ray->was_hit_horizontal)
 		distance_hor = get_dist_between_points(playerPos.x, playerPos.y,
-			ray->horizontal_wallHit.x,ray->horizontal_wallHit.y);
-	if (ray->wasHitVertical)
+				ray->horizontal_wall_hit.x, ray->horizontal_wall_hit.y);
+	if (ray->was_hit_vertical)
 		distance_vert = get_dist_between_points(playerPos.x, playerPos.y,
-			ray->vertical_wallHit.x,ray->vertical_wallHit.y);
+				ray->vertical_wall_hit.x, ray->vertical_wall_hit.y);
 	if (distance_vert < distance_hor)
 	{
 		ray->distance = distance_vert;
-		ray->wasHitHorizontal = false;
+		ray->was_hit_horizontal = false;
 	}
 	else
 	{
 		ray->distance = distance_hor;
-		ray->wasHitVertical = false;
+		ray->was_hit_vertical = false;
 	}
-	ray->distance *= cos(ray->rayAngle - playerRotation);
-	//printf("distance after correction = %f\n", ray->distance);
+	ray->distance *= cos(ray->ray_angle - playerRotation);
 }
 
-static void set_hit_wall_direction(t_ray *ray)
+static void	set_hit_wall_direction(t_ray *ray)
 {
-	if (ray->wasHitHorizontal)
+	if (ray->was_hit_horizontal)
 	{
-		if (ray->isRayFacingUp)
+		if (ray->is_ray_facing_up)
 			ray->hit_wall_direction = NORTH;
 		else
 			ray->hit_wall_direction = SOUTH;
 		return ;
 	}
-	if (ray->isRayFacingRight)
+	if (ray->is_ray_facing_right)
 		ray->hit_wall_direction = EAST;
 	else
 		ray->hit_wall_direction = WEST;
@@ -70,36 +70,32 @@ static void set_hit_wall_direction(t_ray *ray)
 
 static void	set_ray_values(t_cub3d *cub3d, t_ray *ray, float angle)
 {
-	//printf("setting ray value\n");
-	ray->wasHitVertical = false;
-	ray->wasHitHorizontal = false;
-	ray->rayAngle = normalize_angle(angle);
-	ray->isRayFacingUp = !(ray->rayAngle > 0 && ray->rayAngle < M_PI);
-	ray->isRayFacingRight = ray->rayAngle < (0.5 * M_PI) 
-				|| ray->rayAngle > (1.5 * M_PI);
+	ray->was_hit_vertical = false;
+	ray->was_hit_horizontal = false;
+	ray->ray_angle = normalize_angle(angle);
+	ray->is_ray_facing_up = !(ray->ray_angle > 0 && ray->ray_angle < M_PI);
+	ray->is_ray_facing_right = (ray->ray_angle < (0.5 * M_PI)
+			|| ray->ray_angle > (1.5 * M_PI));
 	find_horizontal_wall_hit(ray, cub3d);
 	find_vertical_wall_hit(ray, cub3d);
-	set_distance_to_wall(ray, cub3d->player_data.position, cub3d->player_data.rotationAngle);
+	set_distance_to_wall(ray, cub3d->player_data.position,
+		cub3d->player_data.rotation_angle);
 	set_hit_wall_direction(ray);
 }
 
-// 1. create an array of t_rays for num_rays
-// 2. cast all rays to find the correct distances
-// 3. render 3d projected walls, for every ray
 t_ray	*cast_all_rays(t_cub3d *cub3d)
 {
 	int		i;
-	double	rayAngle;
+	double	ray_angle;
 	t_ray	*rays;
 
-	rays = alloc_check(ft_calloc(NUM_RAYS + 1, sizeof(t_ray)));
+	rays = alloc_check(ft_calloc(cub3d->num_rays + 1, sizeof(t_ray)));
 	i = 0;
-	rayAngle = cub3d->player_data.rotationAngle - (FOV / 2);
-	while (i < NUM_RAYS)
-	{ 
-		set_ray_values(cub3d, &rays[i], rayAngle);
-		rayAngle += FOV / NUM_RAYS;
-		//printf("rayAngle = %f\n", rayAngle);
+	ray_angle = cub3d->player_data.rotation_angle - (cub3d->fov / 2);
+	while (i < cub3d->num_rays)
+	{
+		set_ray_values(cub3d, &rays[i], ray_angle);
+		ray_angle += cub3d->fov / cub3d->num_rays;
 		i++;
 	}
 	return (rays);
