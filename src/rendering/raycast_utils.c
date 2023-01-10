@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/02 10:42:22 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/10 16:32:18 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 16:36:13 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,13 @@ double	normalize_angle(double angle)
 float	get_dist_between_points(float x1, float y1, float x2, float y2)
 {
 	return (sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2)));
+}
+
+bool	is_intercept_in_range(t_fVector2d intercept, t_map map_data)
+{
+	return (
+		intercept.x >= 0
+		&& intercept.x / TILE_SIZE <= TILE_SIZE * map_data.n_column
+		&& intercept.y >= 0
+		&& intercept.y / TILE_SIZE <= TILE_SIZE * map_data.n_row);
 }
