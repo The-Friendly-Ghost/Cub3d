@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/02 10:42:22 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/10 16:36:13 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 17:37:42 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	is_wall_at_location(t_map map_data, float y, float x)
 	int	map_grid_x;
 	int	map_grid_y;
 
-	if (x <= 0 || y <= 0
+	if (x < 0 || y < 0
 		|| x / TILE_SIZE >= map_data.n_column
 		|| y / TILE_SIZE >= map_data.n_row)
 		return (true);
