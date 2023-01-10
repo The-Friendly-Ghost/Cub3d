@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/03 11:22:08 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/10 13:09:00 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 15:33:31 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	draw_line(mlx_image_t *image, t_player player, float endX, float end
 		mlx_put_pixel(image, endX, endY, convert_rgb_to_int(red));
 		endY -= stepY;
 		endX -= stepX;
-		--length;
+		length--;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:04:52 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/09 16:47:14 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 15:29:39 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ t_ray	*cast_all_rays(t_cub3d *cub3d)
 	double	rayAngle;
 	t_ray	*rays;
 
-	rays = alloc_check(ft_calloc(NUM_RAYS, sizeof(t_ray)));
+	rays = alloc_check(ft_calloc(NUM_RAYS + 1, sizeof(t_ray)));
 	i = 0;
 	rayAngle = cub3d->player_data.rotationAngle - (FOV / 2);
 	while (i < NUM_RAYS)
 	{ 
 		set_ray_values(cub3d, &rays[i], rayAngle);
-		rayAngle += FOV / NUM_RAYS * WALL_STRIP_WIDTH;
+		rayAngle += FOV / NUM_RAYS;
 		//printf("rayAngle = %f\n", rayAngle);
 		i++;
 	}

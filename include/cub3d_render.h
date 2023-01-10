@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 12:52:13 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 15:31:01 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 512
 # define FOV_ANGLE 60
-# define FOV FOV_ANGLE * (M_PI / 180)
+# define FOV (FOV_ANGLE * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
-# define NUM_RAYS WINDOW_WIDTH / WALL_STRIP_WIDTH
+# define NUM_RAYS (WINDOW_WIDTH / WALL_STRIP_WIDTH)
 # define MINI_SCALE 0.2
 
 /**

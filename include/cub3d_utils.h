@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d_utils.h                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: merel <merel@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 11:13:37 by cpost             #+#    #+#             */
-/*   Updated: 2023/01/03 14:35:04 by merel            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d_utils.h                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: merel <merel@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
+/*   Updated: 2023/01/10 13:16:52 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ double	normalize_angle(double angle);
  * @param y2 the second point y
  * @return the distance between the two points.
  */
-float get_dist_between_points(float x1, float y1, float x2, float y2);
+float	get_dist_between_points(float x1, float y1, float x2, float y2);
 
 void	draw_mini_map(t_cub3d *cub3d, t_map map, t_player player, t_ray *rays);
 

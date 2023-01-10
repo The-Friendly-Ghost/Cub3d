@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 12:54:42 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 15:29:54 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@ static void set_draw_values(t_ray *rays)
 
 	column_id = 0;
 	distanceToPlane = (WINDOW_WIDTH / 2) / tan(FOV / 2);
-	while (column_id < NUM_RAYS)
+	while (column_id <= NUM_RAYS)
 	{
 		ray = &rays[column_id];
 		//printf("raydistance= %f\n", ray->distance);
-		ray->wall_height = (TILE_SIZE / ray->distance) * distanceToPlane;
+		ray->wall_height = ((float)TILE_SIZE / ray->distance) * distanceToPlane;
 		//printf("distance to plane = %f\n", distanceToPlane);
 		ray->draw_start = (WINDOW_HEIGHT / 2) - (ray->wall_height / 2);
 		ray->draw_end = ray->draw_start + ray->wall_height;
-			//printf("start = %f\nend = %f", ray.draw_start, ray.draw_end);
 		if (ray->wall_height > WINDOW_HEIGHT)
 		{
 			ray->draw_start = 0;
@@ -78,7 +77,7 @@ static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 
 	set_draw_values(rays);
 	i = 0;
-	while (i < NUM_RAYS - 2)
+	while (i < NUM_RAYS)
 	{
 		if (rays[i].hit_wall_direction == NORTH)
 			draw_texture(cub3d, rays[i], cub3d->map_data.north_wall, i);
@@ -108,8 +107,6 @@ void	render(t_cub3d *cub3d_data)
 	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.walls, 0, 0);
 	mlx_set_instance_depth(cub3d_data->images.walls->instances, 3);
 	mlx_set_instance_depth(cub3d_data->images.miniMap->instances, 4);
-	//cub3d_data->images.walls->instances[0].z = 3;
-//	cub3d_data->images.miniMap->instances[0].z = 4;
 	if (drawMiniRays)
 	{
 		if (cub3d_data->images.rays)
@@ -132,8 +129,5 @@ void	update_loop(void *data)
 	turn_player(&cub3d_data->player_data);
 	try_move_player(&cub3d_data->map_data, &cub3d_data->player_data);
 	try_strafe_player(&cub3d_data->map_data, &cub3d_data->player_data);
-	//update_values()
-	//printf("turn direction = %i\n", cub3d_data->player_data.turnDirection);
 	render(cub3d_data);
-	
 }
