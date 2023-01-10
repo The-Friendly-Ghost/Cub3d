@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/03 11:22:08 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/10 13:03:59 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/10 13:09:00 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	draw_line(mlx_image_t *image, t_player player, float endX, float end
 	}
 }
 
-static void	draw_square(t_cub3d *cub3d, float x, float y)
+static void	draw_square(mlx_image_t *image, float x, float y, float size)
 {
 	t_rgb	black;
 	int		black_converted;
@@ -54,12 +54,12 @@ static void	draw_square(t_cub3d *cub3d, float x, float y)
 	x_start = x;
 	y_start = y;
 	//printf("starting on square\n");
-	while (y < y_start + (MINI_SCALE * TILE_SIZE))
+	while (y < y_start + size)
 	{
 		x = x_start;
-		while (x < x_start + (MINI_SCALE * TILE_SIZE))
+		while (x < x_start + size)
 		{
-			mlx_put_pixel(cub3d->images.miniMap, x, y, black_converted);
+			mlx_put_pixel(image, x, y, black_converted);
 			x++;
 		}
 		y++;
@@ -111,7 +111,8 @@ void	draw_mini_map(t_cub3d *cub3d, t_map map, t_player player, t_ray *rays)
 		while (x < map.n_column)
 		{
 			if (map.map[y][x] == '1')
-				draw_square(cub3d, stepx, stepy);
+				draw_square(cub3d->images.miniMap, stepx, stepy,
+					(MINI_SCALE * TILE_SIZE));
 			stepx += (MINI_SCALE * TILE_SIZE);
 			x++;
 		}
