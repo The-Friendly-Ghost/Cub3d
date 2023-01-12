@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/13 11:43:49 by merel         #+#    #+#                 */
-/*   Updated: 2023/01/10 16:27:47 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/12 14:22:19 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "cub3d_structs.h"
 
 /**
- * @brief Convers rgb to int (currently with an alpha of 1)
+ * @brief Converts rgb to int (currently with an alpha of 1)
  * 
  * @param color the rgb struct to be passed on
  * @return an int with the correct value for the color
