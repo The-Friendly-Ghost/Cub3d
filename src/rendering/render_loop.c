@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 16:40:39 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/15 15:41:46 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,46 @@ static void	set_draw_values(t_ray *rays, float distance_to_plane,
 	}
 }
 
+int	get_texture_color(mlx_texture_t *texture, t_ray ray,
+	int current_height)
+{
+	float		width_percentage_tile;
+	float		height_percentage_tile;
+
+	if (ray.was_hit_horizontal)
+		width_percentage_tile = fmod(
+				ray.horizontal_wall_hit.x, TILE_SIZE) / TILE_SIZE;
+	else
+		width_percentage_tile = fmod(
+				ray.vertical_wall_hit.y, TILE_SIZE) / TILE_SIZE;
+	height_percentage_tile = current_height / ray.wall_height;
+	return (texture->pixels[
+			(int)floor(width_percentage_tile
+				* texture->width
+				* texture->height)
+			+ (int)floor(height_percentage_tile * texture->height)]);
+}
+
+//TODO: get the correct color from the texture :)
 static void	draw_texture(t_cub3d *cub3d, t_ray ray,
 	struct mlx_texture *texture, int x)
 {
-	t_rgb	white;
 	int		width;
+	int		current_height;
 
-	(void) texture;
-	white.blue = 255;
-	white.green = 255;
-	white.red = 255;
+	current_height = 0;
 	x = x * WALL_STRIP_WIDTH;
-	while (ray.draw_start < ray.draw_end)
+	while (ray.draw_start + current_height < ray.draw_end)
 	{
 		width = 0;
 		while (width < WALL_STRIP_WIDTH)
 		{
-			mlx_put_pixel(cub3d->images.walls, x + width, ray.draw_start,
-				convert_rgb_to_int(white));
+			mlx_put_pixel(cub3d->images.walls, x + width,
+				ray.draw_start + current_height,
+				get_texture_color(texture, ray, current_height));
 			width++;
 		}
-		ray.draw_start++;
+		current_height++;
 	}
 }
 
