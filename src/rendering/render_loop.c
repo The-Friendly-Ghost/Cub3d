@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/18 13:53:53 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/18 15:26:57 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ void	render(t_cub3d *cub3d_data)
 	mlx_set_instance_depth(cub3d_data->images.walls->instances, 3);
 	mlx_set_instance_depth(cub3d_data->images.mini_map->instances, 4);
 	if (should_draw_rays)
-		draw_rays(cub3d_data->player_data, rays, cub3d_data,
-			cub3d_data->num_rays);
+		draw_rays(rays, cub3d_data, cub3d_data->num_rays);
 	free(rays);
 }
 

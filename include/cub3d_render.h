@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/18 13:39:33 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 15:47:36 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include "cub3d_structs.h"
 # include <math.h>
 
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 512
 # define FOV_ANGLE 60
 # define WALL_STRIP_WIDTH 1
-# define MINI_SCALE 0.2
+# define MINI_SCALE 1
 
 /**
  * @brief Initialize all MLX related things: Window, Keyhooks, loop, loophooks.

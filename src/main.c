@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/10 16:34:07 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 15:46:10 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,29 @@
 #include "cub3d_render.h"
 #include "cub3d_init.h"
 
+static void	check_constants(void)
+{
+	if (MINI_SCALE < 0.1 || MINI_SCALE > 1)
+		exit_error("Minimap factor must be between 0.1 and 1", 1);
+	if (WINDOW_HEIGHT < 100 || WINDOW_HEIGHT > 1500)
+		exit_error("Window height must be between 100 and 1500", 1);
+	if (WINDOW_WIDTH < 200 || WINDOW_WIDTH > 2000)
+		exit_error("Window width must be between 200 and 2000", 1);
+	if (WINDOW_WIDTH / WINDOW_HEIGHT < 1 || WINDOW_WIDTH / WINDOW_HEIGHT > 2)
+		exit_error("Window aspect ratio must be between 1:1 and 2:1", 1);
+	if (FOV_ANGLE != 60)
+		exit_error("FOV Angle must be 60", 1);
+	if (WALL_STRIP_WIDTH != 1)
+		exit_error("Wall strip width must be 1", 1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d_data;
 
 	if (argc != 2)
 		exit_error("Invalid amount of arguments", 1);
+	check_constants();
 	init_map(&cub3d_data.map_data);
 	parse_file(argv[1], &cub3d_data.map_data);
 	validate_map(&cub3d_data.map_data);

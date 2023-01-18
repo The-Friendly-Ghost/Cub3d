@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 16:12:25 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 15:17:10 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_mlx(t_cub3d *cub3d_data)
 		exit_error("Failed to init MLX\n", 1);
 	init_main_images(cub3d_data->mlx, &cub3d_data->images,
 		*(cub3d_data->map_data.floor), *(cub3d_data->map_data.ceiling));
-	draw_mini_map(cub3d_data, cub3d_data->map_data);
+	draw_mini_map(cub3d_data, cub3d_data->map_data, get_scale(cub3d_data));
 	mlx_loop_hook(cub3d_data->mlx, key_loop, cub3d_data);
 	mlx_loop_hook(cub3d_data->mlx, update_loop, cub3d_data);
 	mlx_loop(cub3d_data->mlx);

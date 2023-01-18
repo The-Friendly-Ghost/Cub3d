@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/10 16:27:32 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 15:14:58 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ typedef struct s_ray {
 	bool		is_ray_facing_right;
 	t_direction	hit_wall_direction;
 	float		wall_height;
-	float		draw_start;
-	float		draw_end;
+	int			draw_start;
+	int			draw_end;
 }			t_ray;
 
 #endif
