@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/10 16:26:56 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 13:39:33 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,8 @@ void	find_vertical_wall_hit(t_ray *ray, t_cub3d *cub3d);
  * the map's range.
 */
 bool	is_intercept_in_range(t_fVector2d intercept, t_map map_data);
+
+void	draw_column(t_cub3d *cub3d, t_ray ray,
+			struct mlx_texture *texture, int x);
 
 #endif

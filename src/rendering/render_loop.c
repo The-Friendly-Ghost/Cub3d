@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/18 13:21:38 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 13:44:17 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include "cub3d_colors.h"
 
 static void	set_draw_values(t_ray *rays, float distance_to_plane,
@@ -43,87 +42,23 @@ static void	set_draw_values(t_ray *rays, float distance_to_plane,
 	}
 }
 
-//not working correctly?
-int	get_texture_color(mlx_texture_t *texture, t_ray ray,
-	float current_height, int width_pixels)
-{
-	//float		height_scalar;
-	u_int8_t	*pixel;
-	int			pixel_texture_location;
-//	int			color_height;
-
-(void) ray;
-
-	//height_scalar = current_height / ray.wall_height;
-
-	//color_height = floor(current_height / ray.wall_height * texture->height);
-	//pixel_texture_location = height_scalar * color_height;
-	//pixel_texture_location *= texture->width;
-	pixel_texture_location = current_height;
-	pixel_texture_location +=  (width_pixels);
-	pixel = &texture->pixels[(pixel_texture_location * 4)];
-	return (get_colour_from_pixel(pixel));
-}
-
-float	calculate_texture_width_scalar(t_ray ray)
-{
-	float	width_scalar;
-
-	if (ray.was_hit_horizontal)
-		width_scalar = fmod(ray.horizontal_wall_hit.x, TILE_SIZE) / TILE_SIZE;
-	else
-		width_scalar = fmod(ray.vertical_wall_hit.y, TILE_SIZE) / TILE_SIZE;
-	//printf("width scalar = %f\n", width_scalar);
-	return (width_scalar);
-}
-
-//TODO: get the correct color from the texture :)
-static void	draw_texture(t_cub3d *cub3d, t_ray ray,
-	struct mlx_texture *texture, int x)
-{
-	int		width;
-	int		current_height;
-	int		color;
-	float	width_pixels;
-	float	height_divided;
-	int		height = 0;
-
-	x = x * WALL_STRIP_WIDTH;
-	width_pixels = calculate_texture_width_scalar(ray) * texture->width;
-	height_divided = texture->height / ray.wall_height; //* texture->width;
-	current_height = 0;
-	while (ray.draw_start + current_height < ray.draw_end)
-	{
-		height = floor((height_divided * current_height)) * texture->width;
-		color = get_texture_color(texture, ray, height, width_pixels);
-		width = 0;
-		while (width < WALL_STRIP_WIDTH)
-		{
-			mlx_put_pixel(cub3d->images.walls, x + width,
-				ray.draw_start + current_height, color);
-			width++;
-		}
-		current_height++;
-	}
-}
-
 static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 {
-	int	i;
+	int	x;
 
 	set_draw_values(rays, cub3d->distance_to_plane, cub3d->num_rays);
-	i = 0;
-	while (i < cub3d->num_rays)
+	x = 0;
+	while (x < cub3d->num_rays)
 	{
-		if (rays[i].hit_wall_direction == NORTH)
-			draw_texture(cub3d, rays[i], cub3d->map_data.north_wall, i);
-		else if (rays[i].hit_wall_direction == SOUTH)
-			draw_texture(cub3d, rays[i], cub3d->map_data.south_wall, i);
-		else if (rays[i].hit_wall_direction == EAST)
-			draw_texture(cub3d, rays[i], cub3d->map_data.east_wall, i);
-		else if (rays[i].hit_wall_direction == WEST)
-			draw_texture(cub3d, rays[i], cub3d->map_data.west_wall, i);
-		i++;
+		if (rays[x].hit_wall_direction == NORTH)
+			draw_column(cub3d, rays[x], cub3d->map_data.north_wall, x);
+		else if (rays[x].hit_wall_direction == SOUTH)
+			draw_column(cub3d, rays[x], cub3d->map_data.south_wall, x);
+		else if (rays[x].hit_wall_direction == EAST)
+			draw_column(cub3d, rays[x], cub3d->map_data.east_wall, x);
+		else if (rays[x].hit_wall_direction == WEST)
+			draw_column(cub3d, rays[x], cub3d->map_data.west_wall, x);
+		x++;
 	}
 }
 
