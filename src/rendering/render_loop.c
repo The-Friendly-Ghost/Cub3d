@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/16 13:28:50 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 13:21:38 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,22 @@ static void	set_draw_values(t_ray *rays, float distance_to_plane,
 
 //not working correctly?
 int	get_texture_color(mlx_texture_t *texture, t_ray ray,
-	int current_height, int width_scalar)
+	float current_height, int width_pixels)
 {
-	float		height_scalar;
+	//float		height_scalar;
 	u_int8_t	*pixel;
 	int			pixel_texture_location;
+//	int			color_height;
 
-	height_scalar =  (current_height / ray.wall_height);
-//	printf("height_scalar = %f\n", height_scalar);
-	pixel_texture_location = (height_scalar * texture->height) * texture->width
-		+ (width_scalar * texture->width);
+(void) ray;
+
+	//height_scalar = current_height / ray.wall_height;
+
+	//color_height = floor(current_height / ray.wall_height * texture->height);
+	//pixel_texture_location = height_scalar * color_height;
+	//pixel_texture_location *= texture->width;
+	pixel_texture_location = current_height;
+	pixel_texture_location +=  (width_pixels);
 	pixel = &texture->pixels[(pixel_texture_location * 4)];
 	return (get_colour_from_pixel(pixel));
 }
@@ -66,8 +72,8 @@ float	calculate_texture_width_scalar(t_ray ray)
 	if (ray.was_hit_horizontal)
 		width_scalar = fmod(ray.horizontal_wall_hit.x, TILE_SIZE) / TILE_SIZE;
 	else
-		width_scalar = TILE_SIZE / ray.vertical_wall_hit.y;
-	printf("width scalar = %f\n", width_scalar);
+		width_scalar = fmod(ray.vertical_wall_hit.y, TILE_SIZE) / TILE_SIZE;
+	//printf("width scalar = %f\n", width_scalar);
 	return (width_scalar);
 }
 
@@ -78,14 +84,18 @@ static void	draw_texture(t_cub3d *cub3d, t_ray ray,
 	int		width;
 	int		current_height;
 	int		color;
-	float	width_scalar;
+	float	width_pixels;
+	float	height_divided;
+	int		height = 0;
 
-	current_height = 0;
 	x = x * WALL_STRIP_WIDTH;
-	width_scalar = calculate_texture_width_scalar(ray);
+	width_pixels = calculate_texture_width_scalar(ray) * texture->width;
+	height_divided = texture->height / ray.wall_height; //* texture->width;
+	current_height = 0;
 	while (ray.draw_start + current_height < ray.draw_end)
 	{
-		color = get_texture_color(texture, ray, current_height, width_scalar);
+		height = floor((height_divided * current_height)) * texture->width;
+		color = get_texture_color(texture, ray, height, width_pixels);
 		width = 0;
 		while (width < WALL_STRIP_WIDTH)
 		{
