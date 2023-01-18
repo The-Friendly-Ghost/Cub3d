@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/08 12:54:34 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/18 14:18:25 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,9 @@ static void	equalize_row_length(t_map *map)
 	}
 }
 
-static void	check_forbidden_characters_in_map(t_map *map)
+static void	check_forbidden_characters_in_map(t_map *map, int x, int y)
 {
 	bool	player_init;
-	int		y;
-	int		x;
 
 	player_init = false;
 	y = 0;
@@ -97,6 +95,8 @@ static void	check_forbidden_characters_in_map(t_map *map)
 		}
 		y++;
 	}
+	if (player_init == false)
+		exit_error("No player in map", 1);
 }
 
 /**
@@ -134,6 +134,6 @@ void	validate_map(t_map *map)
 {
 	check_empty_lines(map);
 	equalize_row_length(map);
-	check_forbidden_characters_in_map(map);
+	check_forbidden_characters_in_map(map, 0, 0);
 	check_if_map_is_closed(map);
 }

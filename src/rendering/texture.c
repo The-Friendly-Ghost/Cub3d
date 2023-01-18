@@ -6,7 +6,7 @@
 /*   By: mevan-de <mevan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 13:38:54 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/18 13:42:50 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/18 14:14:05 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	calculate_texture_height_pixels(mlx_texture_t *texture, t_ray ray,
 	int		height;
 	float	height_divided;
 
+	if (ray.wall_height > WINDOW_HEIGHT)
+		draw_height += (ray.wall_height - WINDOW_HEIGHT) / 2;
 	height_divided = texture->height / ray.wall_height;
 	height = floor((height_divided * draw_height)) * texture->width;
 	return (height);
