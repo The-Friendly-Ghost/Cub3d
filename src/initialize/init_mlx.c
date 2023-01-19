@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/19 11:54:07 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 13:09:15 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	delete_textures(t_map *map_data)
 		mlx_delete_texture(map_data->west_wall);
 }
 
-void	init_mlx(t_cub3d *cub3d_data)
+void	start_game(t_cub3d *cub3d_data)
 {
 	cub3d_data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!cub3d_data->mlx)

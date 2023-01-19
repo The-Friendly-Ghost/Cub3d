@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/08 10:53:59 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/19 12:07:08 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,12 @@ void	init_map(t_map *map);
  * @note
  */
 bool	all_info_is_set(t_map *map);
+
+/**
+ * @brief fills up the empty spaces to walls for a nicer looking minimap and
+ * to prevent breakouts.
+*/
+void	add_walls_on_empty_spaces(t_map *map_data);
 
 void	print_map(char **map);
 

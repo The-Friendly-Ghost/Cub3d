@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:14:03 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/19 11:06:26 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 13:09:29 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param cube3d_data all data needed for the project to run
  * @return Nothing
  */
-void	init_mlx(t_cub3d *cub3d_data);
+void	start_game(t_cub3d *cub3d_data);
 
 /**
  * @brief mlx loop that continuously gets called,

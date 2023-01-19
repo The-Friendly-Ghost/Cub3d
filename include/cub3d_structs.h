@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 11:23:36 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 13:04:00 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_player{
 	int			walk_direction;
 	int			strafe_direction;
 	double		rotation_angle;
-	int			move_speed;
+	float		move_speed;
 	float		rotation_speed;
 }	t_player;
 

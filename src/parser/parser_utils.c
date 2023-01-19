@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 14:15:04 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/08 10:39:57 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/19 12:59:30 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,25 @@ bool	all_info_is_set(t_map *map)
 	if (map->south_wall == NULL)
 		return (false);
 	return (true);
+}
+
+void	add_walls_on_empty_spaces(t_map *map_data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map_data->map[y])
+	{
+		x = 0;
+		while (map_data->map[y][x])
+		{
+			if (map_data->map[y][x] == ' ' || map_data->map[y][x] == '\n')
+				map_data->map[y][x] = '1';
+			x++;
+		}
+		y++;
+	}
 }
 
 // TODO Deze functie kan later verwijderd worden als map parsing 100% goed gaat
