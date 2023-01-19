@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/18 15:46:10 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/19 11:43:36 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@
 #include <stdio.h>
 #include "cub3d_render.h"
 #include "cub3d_init.h"
+
+void	free_map_data(t_map *map_data)
+{
+	int	i;
+
+	i = 0;
+	while (map_data->map[i])
+	{
+		free (map_data->map[i]);
+		i++;
+	}
+	free (map_data->map);
+	free (map_data->ceiling);
+	free (map_data->floor);
+}
 
 static void	check_constants(void)
 {
@@ -40,6 +55,7 @@ int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d_data;
 
+	atexit(done);
 	if (argc != 2)
 		exit_error("Invalid amount of arguments", 1);
 	check_constants();
@@ -51,6 +67,8 @@ int	main(int argc, char **argv)
 	cub3d_data.fov = (FOV_ANGLE * (M_PI / 180));
 	cub3d_data.distance_to_plane = (WINDOW_WIDTH / 2) / tan(cub3d_data.fov / 2);
 	cub3d_data.num_rays = (WINDOW_WIDTH / WALL_STRIP_WIDTH);
+	cub3d_data.rays = NULL;
 	init_mlx(&cub3d_data);
+	free_map_data(&cub3d_data.map_data);
 	return (0);
 }

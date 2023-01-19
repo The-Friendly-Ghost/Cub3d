@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/09 12:02:12 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/18 15:26:57 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/19 11:25:08 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,24 @@ static void	draw_walls(t_cub3d *cub3d, t_ray *rays)
 
 void	render(t_cub3d *cub3d_data)
 {
-	t_ray	*rays;
 	bool	should_draw_rays;
 
 	should_draw_rays = true;
-	rays = cast_all_rays(cub3d_data);
+	cub3d_data->rays = cast_all_rays(cub3d_data);
 	if (cub3d_data->images.walls)
 	{
 		mlx_delete_image(cub3d_data->mlx, cub3d_data->images.walls);
 		cub3d_data->images.walls = alloc_check(mlx_new_image(cub3d_data->mlx,
 					WINDOW_WIDTH, WINDOW_HEIGHT));
 	}
-	draw_walls(cub3d_data, rays);
+	draw_walls(cub3d_data, cub3d_data->rays);
 	mlx_image_to_window(cub3d_data->mlx, cub3d_data->images.walls, 0, 0);
 	mlx_set_instance_depth(cub3d_data->images.walls->instances, 3);
 	mlx_set_instance_depth(cub3d_data->images.mini_map->instances, 4);
 	if (should_draw_rays)
-		draw_rays(rays, cub3d_data, cub3d_data->num_rays);
-	free(rays);
+		draw_rays(cub3d_data->rays, cub3d_data, cub3d_data->num_rays);
+	free(cub3d_data->rays);
+	cub3d_data->rays = NULL;
 }
 
 void	update_loop(void *data)

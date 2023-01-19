@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/18 15:14:58 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/19 11:23:36 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,6 @@ typedef struct s_images{
 	mlx_image_t	*rays;
 }	t_images;
 
-typedef struct s_cub3d {
-	mlx_t		*mlx;
-	float		fov;
-	float		num_rays;
-	float		distance_to_plane;
-	t_map		map_data;
-	t_player	player_data;
-	double		last_time;
-	t_images	images;
-}	t_cub3d;
-
 typedef struct s_ray {
 	double		ray_angle;
 	t_fVector2d	horizontal_step;
@@ -95,5 +84,17 @@ typedef struct s_ray {
 	int			draw_start;
 	int			draw_end;
 }			t_ray;
+
+typedef struct s_cub3d {
+	mlx_t		*mlx;
+	float		fov;
+	float		num_rays;
+	float		distance_to_plane;
+	t_map		map_data;
+	t_player	player_data;
+	double		last_time;
+	t_images	images;
+	t_ray		*rays;
+}	t_cub3d;
 
 #endif

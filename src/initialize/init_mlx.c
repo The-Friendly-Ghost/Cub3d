@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/18 15:17:10 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/19 11:41:33 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,28 @@ static void	init_main_images(mlx_t *mlx, t_images *images, t_rgb floor,
 	images->rays = NULL;
 }
 
+void	delete_images(t_cub3d *cub3d, t_images *images, mlx_t *mlx)
+{
+	if (images->ceiling)
+		mlx_delete_image(mlx, images->ceiling);
+	if (images->floor)
+		mlx_delete_image(mlx, images->floor);
+	if (images->rays)
+		mlx_delete_image(mlx, images->rays);
+	if (images->mini_map)
+		mlx_delete_image(mlx, images->mini_map);
+	if (images->walls)
+		mlx_delete_image(mlx, images->walls);
+	if (cub3d->map_data.north_wall)
+		mlx_delete_texture(cub3d->map_data.north_wall);
+	if (cub3d->map_data.south_wall)
+		mlx_delete_texture(cub3d->map_data.south_wall);
+	if (cub3d->map_data.east_wall)
+		mlx_delete_texture(cub3d->map_data.east_wall);
+	if (cub3d->map_data.west_wall)
+		mlx_delete_texture(cub3d->map_data.west_wall);
+}
+
 void	init_mlx(t_cub3d *cub3d_data)
 {
 	cub3d_data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
@@ -73,5 +95,8 @@ void	init_mlx(t_cub3d *cub3d_data)
 	mlx_loop_hook(cub3d_data->mlx, key_loop, cub3d_data);
 	mlx_loop_hook(cub3d_data->mlx, update_loop, cub3d_data);
 	mlx_loop(cub3d_data->mlx);
+	if (cub3d_data->rays)
+		free (cub3d_data->rays);
+	delete_images(cub3d_data, &cub3d_data->images, cub3d_data->mlx);
 	mlx_terminate(cub3d_data->mlx);
 }
