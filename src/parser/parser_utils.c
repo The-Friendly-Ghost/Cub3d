@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 14:15:04 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 13:50:51 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 19:00:45 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,27 @@ void	add_walls_on_empty_spaces(t_map *map_data)
 		}
 		y++;
 	}
+}
+
+void	set_map_dimensions(t_map *map)
+{
+	int	x;
+	int	highest_width;
+	int	y;
+
+	y = 0;
+	highest_width = 0;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x])
+			x++;
+		if (x > highest_width)
+			highest_width = x;
+		y++;
+	}
+	map->n_column = highest_width;
+	map->n_row = y;
 }
 
 void	print_map(char **map)

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 18:57:46 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/19 19:00:41 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,6 @@
 #include <string.h>
 #include <errno.h>
 #include <stdio.h>
-
-void	set_map_dimensions(t_map *map)
-{
-	int	x;
-	int	highest_width;
-	int	y;
-
-	y = 0;
-	highest_width = 0;
-	while (map->map[y])
-	{
-		x = 0;
-		while (map->map[y][x])
-			x++;
-		if (x > highest_width)
-			highest_width = x;
-		y++;
-	}
-	map->n_column = highest_width;
-	map->n_row = y;
-}
 
 static void	read_file(t_map *map)
 {
