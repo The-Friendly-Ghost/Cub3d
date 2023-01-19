@@ -6,7 +6,7 @@
 #    By: merel <merel@student.42.fr>                  +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2023/01/19 11:32:20 by mevan-de      ########   odam.nl          #
+#    Updated: 2023/01/19 14:04:19 by mevan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,9 +84,11 @@ fclean: clean
 	@make -C $(GNL_PATH) fclean
 	@make -C $(MLX42_PATH) fclean
 
+bonus: all
+
 re: fclean all
 
 play: all
-	./cub3D maps/subject.cub
+	./cub3D maps/basic.cub
 
 .PHONY: clean, fclean, re, all, play

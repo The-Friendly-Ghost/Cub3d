@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 09:15:12 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/10 16:33:39 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 14:10:38 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	*alloc_check(void *ptr)
 {
 	if (!ptr)
-		exit_error("Malloc fail\n", 1);
+		exit_error("Malloc fail", 1);
 	return (ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 13:39:40 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/19 12:10:47 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 14:10:22 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static char	get_player_start_direction(char **map)
 
 static bool	set_player_position(t_player *player_data, t_Vector2d position)
 {
-	player_data->position.x = position.x * TILE_SIZE;
-	player_data->position.y = position.y * TILE_SIZE;
+	player_data->position.x = position.x * TILE_SIZE + (0.5 * TILE_SIZE);
+	player_data->position.y = position.y * TILE_SIZE + (0.5 * TILE_SIZE);
 	return (true);
 }
 
@@ -75,11 +75,11 @@ static bool	set_player_init_rotation(t_player *player_data, char **map)
 void	init_player_vars(t_player *player_data, char **map)
 {
 	if (!map)
-		exit_error("Map value in init_player_vars is NULL\n", 1);
+		exit_error("Map value in init_player_vars is NULL", 1);
 	if (!set_player_position(player_data, get_player_start_coordinates(map)))
-		exit_error("Failed to set player position, check map\n", 1);
+		exit_error("Failed to set player position, check map", 1);
 	if (!set_player_init_rotation(player_data, map))
-		exit_error("Failed to set initial player rotation\n", 1);
+		exit_error("Failed to set initial player rotation", 1);
 	player_data->turn_direction = 0;
 	player_data->walk_direction = 0;
 	player_data->strafe_direction = 0;

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 14:15:04 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 12:59:30 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 13:50:51 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	add_walls_on_empty_spaces(t_map *map_data)
 	}
 }
 
-// TODO Deze functie kan later verwijderd worden als map parsing 100% goed gaat
 void	print_map(char **map)
 {
 	int	i;

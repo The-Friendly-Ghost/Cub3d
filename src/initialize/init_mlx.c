@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/19 13:09:15 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 14:10:30 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static mlx_image_t	*create_background_image(mlx_t *mlx, t_rgb color)
 
 	image = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT / 2);
 	if (!image)
-		exit_error("Failed to create background image\n", 1);
+		exit_error("Failed to create background image", 1);
 	fill_image(image, color);
 	return (image);
 }
@@ -78,7 +78,7 @@ void	start_game(t_cub3d *cub3d_data)
 {
 	cub3d_data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!cub3d_data->mlx)
-		exit_error("Failed to init MLX\n", 1);
+		exit_error("Failed to init MLX", 1);
 	init_main_images(cub3d_data->mlx, &cub3d_data->images,
 		*(cub3d_data->map_data.floor), *(cub3d_data->map_data.ceiling));
 	draw_mini_map(cub3d_data, cub3d_data->map_data, get_scale(cub3d_data));

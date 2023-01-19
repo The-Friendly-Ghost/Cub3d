@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 12:07:43 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 13:40:33 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static void	check_if_map_is_closed(t_map *map)
 		x = 0;
 		while (map->map[y][x])
 		{
-			if (map->map[y][x] == '0')
+			if (map->map[y][x] == '0' || map->map[y][x] == 'N'
+				|| map->map[y][x] == 'E' || map->map[y][x] == 'S'
+				|| map->map[y][x] == 'W')
 			{
 				if (x == 0 || y == 0 || map->map[y + 1] == NULL
 					|| map->map[y][x + 1] == '\0')
