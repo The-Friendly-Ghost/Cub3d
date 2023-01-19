@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 14:03:24 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 18:57:46 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <errno.h>
 #include <stdio.h>
 
-static void	set_map_dimensions(t_map *map)
+void	set_map_dimensions(t_map *map)
 {
 	int	x;
 	int	highest_width;
@@ -83,5 +83,4 @@ void	parse_file(char *filename, t_map *map)
 	if (map->fd_map < 0)
 		exit_error(strerror(errno), 1);
 	read_file(map);
-	set_map_dimensions(map);
 }

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 12:07:08 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 18:58:00 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
  * @note
  */
 void	parse_file(char *filename, t_map *map);
+
+void	set_map_dimensions(t_map *map);
 
 /**
 #=====================================#

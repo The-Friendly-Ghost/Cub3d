@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 13:40:33 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 18:57:38 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,4 +139,5 @@ void	validate_map(t_map *map)
 	check_forbidden_characters_in_map(map, 0, 0);
 	check_if_map_is_closed(map);
 	add_walls_on_empty_spaces(map);
+	set_map_dimensions(map);
 }
