@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 11:43:36 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 11:57:08 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include "cub3d_render.h"
 #include "cub3d_init.h"
+#include <stdlib.h>
 
 void	free_map_data(t_map *map_data)
 {
@@ -55,7 +56,6 @@ int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d_data;
 
-	atexit(done);
 	if (argc != 2)
 		exit_error("Invalid amount of arguments", 1);
 	check_constants();

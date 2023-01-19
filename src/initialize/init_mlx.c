@@ -6,7 +6,7 @@
 /*   By: merel <merel@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 11:21:08 by mevan-de      #+#    #+#                 */
-/*   Updated: 2023/01/19 11:41:33 by mevan-de      ########   odam.nl         */
+/*   Updated: 2023/01/19 11:54:07 by mevan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,16 @@ static void	init_main_images(mlx_t *mlx, t_images *images, t_rgb floor,
 	images->rays = NULL;
 }
 
-void	delete_images(t_cub3d *cub3d, t_images *images, mlx_t *mlx)
+void	delete_textures(t_map *map_data)
 {
-	if (images->ceiling)
-		mlx_delete_image(mlx, images->ceiling);
-	if (images->floor)
-		mlx_delete_image(mlx, images->floor);
-	if (images->rays)
-		mlx_delete_image(mlx, images->rays);
-	if (images->mini_map)
-		mlx_delete_image(mlx, images->mini_map);
-	if (images->walls)
-		mlx_delete_image(mlx, images->walls);
-	if (cub3d->map_data.north_wall)
-		mlx_delete_texture(cub3d->map_data.north_wall);
-	if (cub3d->map_data.south_wall)
-		mlx_delete_texture(cub3d->map_data.south_wall);
-	if (cub3d->map_data.east_wall)
-		mlx_delete_texture(cub3d->map_data.east_wall);
-	if (cub3d->map_data.west_wall)
-		mlx_delete_texture(cub3d->map_data.west_wall);
+	if (map_data->north_wall)
+		mlx_delete_texture(map_data->north_wall);
+	if (map_data->south_wall)
+		mlx_delete_texture(map_data->south_wall);
+	if (map_data->east_wall)
+		mlx_delete_texture(map_data->east_wall);
+	if (map_data->west_wall)
+		mlx_delete_texture(map_data->west_wall);
 }
 
 void	init_mlx(t_cub3d *cub3d_data)
@@ -97,6 +87,6 @@ void	init_mlx(t_cub3d *cub3d_data)
 	mlx_loop(cub3d_data->mlx);
 	if (cub3d_data->rays)
 		free (cub3d_data->rays);
-	delete_images(cub3d_data, &cub3d_data->images, cub3d_data->mlx);
+	delete_textures(&cub3d_data->map_data);
 	mlx_terminate(cub3d_data->mlx);
 }
