@@ -6,7 +6,7 @@
 #    By: merel <merel@student.42.fr>                  +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2023/01/19 14:04:19 by mevan-de      ########   odam.nl          #
+#    Updated: 2023/01/31 12:25:33 by mevan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,18 @@ bonus: all
 
 re: fclean all
 
+norm:
+	norminette src lib/Libft lib/get_next_line
+
+invalid: all
+	./test_invalid.sh
+
 play: all
 	./cub3D maps/basic.cub
+	./cub3D maps/color_walls.cub
+	./cub3D maps/large.cub
+	./cub3D maps/long_map.cub
+	./cub3D maps/small.cub
+	./cub3D maps/wide_map.cub
 
-.PHONY: clean, fclean, re, all, play
+.PHONY: clean, fclean, re, all, play, invalid, norm

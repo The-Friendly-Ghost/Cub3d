@@ -1,0 +1,9 @@
+F 71,135,87
+C 127,224,224
+NO ./png/red_yellow.png
+SO ./png/red_yellow.png
+WE ./png/red_tex.png
+EA ./png/blue_tex.png
+
+111
+111
