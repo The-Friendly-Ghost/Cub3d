@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 19:00:41 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/31 12:39:22 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ static void	read_file(t_map *map)
 		exit_error("No map in .cub file, or map is in wrong place", 1);
 }
 
+static void	init_map_textures(t_map *map)
+{
+	map->ceiling = NULL;
+	map->floor = NULL;
+	map->east_wall = NULL;
+	map->north_wall = NULL;
+	map->south_wall = NULL;
+	map->west_wall = NULL;
+}
+
 void	parse_file(char *filename, t_map *map)
 {
 	int	i;
@@ -61,5 +71,6 @@ void	parse_file(char *filename, t_map *map)
 	map->fd_map = open(filename, R_OK);
 	if (map->fd_map < 0)
 		exit_error(strerror(errno), 1);
+	init_map_textures(map);
 	read_file(map);
 }

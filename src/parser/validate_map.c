@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/19 18:57:38 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/31 13:12:49 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ static void	check_empty_lines(t_map *map)
 	while (map->map[i])
 	{
 		if (ft_str_is_whitespace(map->map[i]))
-			exit_error("No empty lines inside of the map allowed", 1);
+			exit_error("Invalid .cub file", 1);
 		i++;
 	}
 }
